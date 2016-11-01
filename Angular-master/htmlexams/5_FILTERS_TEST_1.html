@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Filters - Test 1</title>
+  
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+  <script>
+  
+	angular.module('filterTestApp', [])
+	.controller('filterTestController', function(dateFilter, $scope) {
+	   $scope.filteredDate = dateFilter(new Date(), 'yyyy-MMM-dd');
+	})
+	.filter('negative', function() {
+		return function(input) {		
+			if (input < 0) {
+				input = input * -1;
+				return '(' + input + ')';
+			}			
+			return input;
+	   };
+	}); 
+	
+  </script>
+</head>
+
+<body ng-app="filterTestApp">
+
+	<hr>
+		<strong>TEST DESCRIPTION:</strong>
+		<p>1. Use a dateFilter to print the current(new Date()) in 'yyyy-MMM-dd' format</p>
+		<p>2. Create a 'negative' custom Filter to add a parenthesis '(x)' instead negative sign '-x' to a number input if this one is negative</p>
+	<hr>
+	<br>
+
+	<div ng-controller="filterTestController" ng-cloak>
+		
+		<br> Date: {{filteredDate}}
+		<br> Number: <input ng-model="number" type="text">
+		<br> Filtered Number: {{number | negative}}
+	</div> 
+  
+</body>
+</html>

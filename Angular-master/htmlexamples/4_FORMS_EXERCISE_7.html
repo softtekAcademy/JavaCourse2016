@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<style type="text/css">
+</style>
+  <meta charset="UTF-8">
+  <title>Forms</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+<script>
+(function(angular) {
+  'use strict';
+angular.module('form-example2', []).directive('contenteditable', function() {
+  return {
+    require: 'ngModel',
+    link: function(scope, elm, attrs, ctrl) {
+      // view -> model
+      elm.on('blur', function() {
+        ctrl.$setViewValue(elm.html());
+      });
+
+      // model -> view
+      ctrl.$render = function() {
+        elm.html(ctrl.$viewValue);
+      };
+
+      // load init value from DOM
+      ctrl.$setViewValue(elm.html());
+    }
+  };
+});
+})(window.angular);
+</script>
+  
+
+  
+</head>
+<body ng-app="form-example2">
+
+<hr>
+  <div>
+  <strong>DESCRIPTION:</strong>
+  </div>
+  <div>
+  <p>
+  This example shows how to create custom form controls using angular directives.
+  <br>
+	
+  <br><br> 
+  Important thing to notice: <br>
+  1. How the       
+      ctrl.$setViewValue(elm.html());  code initializes the model with the value in the directive;
+	  
+	 <br>
+  2. How any changes to the model are propagated to the directive (HTML control) using this code       ctrl.$render = function() {
+        elm.html(ctrl.$viewValue);
+      };
+	  <br>
+  3. How the  elm.on('blur', function() {
+        ctrl.$setViewValue(elm.html());
+      }); code updates the model when the directive (HTML control) detects the blur event (lose focus event).
+  
+  </p>
+  </div>
+  <hr>
+
+  <div contentEditable="true" ng-model="content" title="Click to edit">Some</div>
+<pre>model = {{content}}</pre>
+
+<style type="text/css">
+  div[contentEditable] {
+    cursor: pointer;
+    background-color: #D0D0D0;
+  }
+</style>
+</body>
+</html>

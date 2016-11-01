@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <style>
+  div.spicy div {
+  padding: 10px;
+  border: solid 2px blue;
+}
+  </style>
+  <meta charset="UTF-8">
+  <title>Controllers - Scope inheritance</title>
+  
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+  <script>
+	(function(angular) {
+	  'use strict';
+	var myApp = angular.module('scopeInheritance', []);
+	myApp.controller('MainController', ['$scope', function($scope) {
+
+	  $scope.timeOfDay = 'morning';
+	  $scope.name = 'Jorge';
+	  
+	}]);
+	myApp.controller('ChildController', ['$scope', function($scope) {
+	  $scope.name = 'Julio';
+	}]);
+	myApp.controller('GrandChildController', ['$scope', function($scope) {
+	  $scope.timeOfDay = 'evening';
+	  $scope.name = 'Linda';
+
+	  }]);
+	})(window.angular);
+  </script>
+  
+
+  
+</head>
+<body ng-app="scopeInheritance">
+
+  <hr>
+  <div>
+  <strong>DESCRIPTION:</strong>
+  </div>
+  <div>
+  <p>
+ In angular you can define portions of your HTML to treated as Angular Apps.  To do that, you use the ng-app directive.  Provided that HTML is hierarchical, 
+ your angular app will cover every HTML code under the ng-app directive.  For instance, if you define your ng-app dierctive in the ,"body" HTML tag, then the entire
+ page will be an angular application. <br><br>
+ Something similar happens with controllers.  The controller you attach to a portion of the HTML page using ng-controller directive indicates that 
+ everything under that HTML portion will be part of the scope of action of the controller.  Remember that the ng-controller directive creates a new scope that is 
+ attached to the controller.  If you have nested controllers then a new scope will be created every time but the child controllers will inherit the
+ scope properties of their parents.
+  <br><br> 
+  Important thing to notice: <br>
+  1. This example defines 3 angular controllers, which are used hierarchically in the HTML page meaning there is a parent controller, a child controller, and a grand child controller.<br>
+  2. Each nested controller inherits the scope from its parent.
+  </p>
+  </div>
+  <hr>
+
+
+  <div class="spicy">
+  <div ng-controller="MainController">
+    <p>Good <strong>{{timeOfDay}}</strong>, {{name}}!</p>
+
+    <div ng-controller="ChildController as childctrl">
+      <p>Good <strong>{{timeOfDay}}</strong>, {{name}}!</p>
+
+      <div ng-controller="GrandChildController">
+        <p>Good <strong>{{timeOfDay}}</strong>, {{name}}!</p>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

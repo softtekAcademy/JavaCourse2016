@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Directives</title>
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-animate.js"></script>
+  <script>
+	
+	(function() {
+	  var app = angular.module('ReviewsApp', []);
+
+	  app.controller("ReviewController", function($scope, $window){
+
+		this.review = {};
+	
+		$scope.reviews = [{stars: 5,
+			body: "I love this gem!",
+			author: "joe@example.org"}];
+
+		this.addReview = function(){
+		  $window.alert("Adding review ...");
+		  $scope.reviews.push(this.review);
+		  this.review = {};
+		};
+	  });
+	})();
+  
+  </script>
+</head>
+
+
+<body ng-app="ReviewsApp" ng-controller="ReviewController as reviewCtrl">
+  <hr>
+  <div>
+  <strong>TEST DESCRIPTION:</strong>
+  </div>
+  <div>
+  <p>
+  The exam was solved as follows:<br>
+  &nbsp;<strong>1.</strong> The ng-submit="reviewCtrl.addReview()" was added at the form definition.
+  <br>
+  </p>
+  </div>
+  <hr>
+
+  
+    <!--  Store Header  -->
+    <header>
+      <h1 class="text-center">CRAFTED GEMS</h1>
+      <h2 class="text-center">STORE</h2>
+    </header>
+
+	
+	<!--  Product Reviews List -->
+	<hr>
+	<ul>
+	  <h4>Reviews</h4>
+	  <li ng-repeat="review in reviews">
+		<blockquote>
+		  <strong>{{review.stars}} Stars</strong>
+		  {{review.body}}
+		  <cite class="clearfix">—{{review.author}}</cite>
+		</blockquote>
+	  </li>
+	</ul>
+	<hr>
+
+	<!--  Review Form -->
+	<form name="reviewForm"  ng-submit="reviewCtrl.addReview()">
+
+	  <!--  Live Preview -->
+	  <blockquote >
+		<strong>{{reviewCtrl.review.stars}} Stars</strong>
+		{{reviewCtrl.review.body}}
+		<cite class="clearfix">—{{reviewCtrl.review.author}}</cite>
+	  </blockquote>
+
+	  <!--  Review Form -->
+	  <h4>Submit a Review</h4>
+	  <fieldset class="form-group">
+		<select ng-model="reviewCtrl.review.stars" class="form-control" ng-options="stars for stars in [5,4,3,2,1]" title="Stars">
+		  <option value>Rate the Product</option>
+		</select>
+	  </fieldset>
+	  <fieldset class="form-group">
+		<textarea ng-model="reviewCtrl.review.body" class="form-control" placeholder="Write a short review of the product..." title="Review"></textarea>
+	  </fieldset>
+	  <fieldset class="form-group">
+		<input ng-model="reviewCtrl.review.author" type="email" class="form-control" placeholder="jimmyDean@example.org" title="Email" />
+	  </fieldset>
+	  <fieldset class="form-group">
+		<input type="submit" class="btn btn-primary pull-right" value="Submit Review" />
+	  </fieldset>
+	</form>
+
+	
+
+	
+	
+  </body>
+</html>

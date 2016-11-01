@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Controllers - functions with arguments</title>
+  
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+  <script>
+	(function(angular) {
+	  'use strict';
+	var myApp = angular.module('spicyApp2', []);
+
+	myApp.controller('SpicyController', ['$scope', function($scope) {
+		$scope.customSpice = "wasabi";
+		$scope.spice = 'very';
+
+		$scope.spicy = function(spice) {
+			$scope.spice = spice;
+		};
+	}]);
+	})(window.angular);
+  </script>
+  
+
+  
+</head>
+
+<body ng-app="spicyApp2">
+
+<hr>
+  <div>
+  <strong>DESCRIPTION:</strong>
+  </div>
+  <div>
+  <p>
+  This example will print a note after clicking either "Chili" or "Custom spice" buttons.  The "Chili" button will always print the same note.<br>
+  The "Custom spice" button will take whatever you inputted in the input text box, will update the model property in the scope with this value, and will print the note using this value.
+  <br><br> 
+  Important thing to notice: <br>
+  1. The controller provides the spicy(spice) function that receives a paramter that is used to print the note;<br>
+  </p>
+  </div>
+  <hr>
+
+  
+
+  <div ng-controller="SpicyController">
+ <input ng-model="customSpice">
+ <button ng-click="spicy('chili')">Chili</button>
+ <button ng-click="spicy(customSpice)">Custom spice</button>
+ <p>The food is {{spice}} spicy!</p>
+</div>
+</body>
+</html>

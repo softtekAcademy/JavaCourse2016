@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<style>
+</style>
+  <meta charset="UTF-8">
+  <title>Directives</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+  <script>
+	(function(angular) {
+	  'use strict';
+	angular.module('docsSimpleDirective', [])
+	  .controller('Controller', ['$scope', function($scope) {
+		$scope.training = {
+		  topic: 'Angular',
+		  description: 'The AngularJS client-side framework will be introduced.'
+		};
+	  }])
+	  .directive('myTraining', function() {
+		return {
+		  template: 'Welcome to the Angular Training Program!  This is my first directive!  It is intended to hold this template!<br> <strong>Training topic:</strong> {{training.topic}} <strong>Description:</strong> {{training.description}}'
+		};
+	  });
+	})(window.angular);  
+  </script>
+</head>
+<body ng-app="docsSimpleDirective">
+
+  <hr>
+  <div>
+  <strong>DESCRIPTION:</strong>
+  </div>
+  <div>
+  <p>
+  This exercise shows how to build a quite simple HTML element-level custom directive that outputs a simple template.  <br><br>
+  <strong>NOTE: </strong> Notice that the directive is defined using the "myTraining" name.  To use it, however, you must provide the my-training name instead at the HTML element level.  This is how angular works. 
+  &nbsp;&nbsp;
+  <br><br>
+  </p>
+  </div>
+  <hr>
+
+  
+  
+  <div ng-controller="Controller">
+  <div my-training></div>
+</div>
+</body>
+</html>

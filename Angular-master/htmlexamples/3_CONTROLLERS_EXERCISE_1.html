@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Controllers - Basic controller</title>
+  
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+  <script>
+	(function(angular) {
+	  'use strict';
+	var myApp = angular.module('MyAngularApp', []);
+
+	myApp.controller('FirstController', ['$scope', function($scope) {
+		$scope.note1 = 'FIRST NOTE: This text is defined at the scope in the "note1" property and printed by invoking the getFirstNote() function of the controller';
+		$scope.note2 = 'SECOND NOTE: This text is defined at the scope in the "note2" property and printed by means of an angular expression that fetches the value of the property from the scope';
+		
+		this.getFirstNote = function()
+		{
+			return $scope.note1;
+		}
+
+	}]);
+	})(window.angular);  
+  </script>
+  
+
+  
+</head>
+
+<body ng-app="MyAngularApp">
+
+
+  <hr>
+  <div>
+  <strong>DESCRIPTION:</strong>
+  </div>
+  <div>
+  <p>
+  This example will print two notes that were defined by the "FirstController" controller as properties (variables) in the scope.<br>
+  
+  Important thing to notice: <br>
+  1. A FirstController instance is instantiated as "understandScope" using the ng-controller angular directive.  This ng-controller directive creates a new scope;<br>
+  2. The first note is printed by invoking the getFirstNote() function defined within the FirstController controller;  <br>
+  3. The second note is printed by means of using an expression that retrieves the value of the note from the scope.
+  </p>
+  </div>
+  <hr>
+
+
+  <div ng-controller="FirstController as understandScope">
+  <!--Print first note.	-->
+  <p>{{understandScope.getFirstNote()}}</p>
+
+  <!--Print second note.	-->
+  <p>{{note2}}</p>
+  
+</div>
+</body>
+</html>

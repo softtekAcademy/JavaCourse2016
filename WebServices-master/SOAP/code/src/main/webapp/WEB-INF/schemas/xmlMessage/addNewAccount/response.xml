@@ -1,0 +1,6 @@
+<!--
+Defining expected response 
+ -->
+<addNewAccountResponse>
+	<result>Boolean</result>
+</addNewAccountResponse>

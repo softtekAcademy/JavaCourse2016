@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>2-way binding</title>
+  
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+  <script>
+	(function(angular) {
+	  'use strict';
+	var myApp = angular.module('spicyApp1', []);
+
+	myApp.controller('SpicyController', ['$scope', function($scope) {
+	}]);
+	})(window.angular);  
+  </script>
+  
+
+  
+</head>
+
+<body ng-app="spicyApp1">
+
+
+  <hr>
+  <div>
+  <strong>TEST DESCRIPTION:</strong>
+  </div>
+  <div>
+  <p>This tests reflect 2 way binding between an expression and a variable in the model within the scope that was initialized in the view.
+  Notice that we created 2 model objects in the scope by utilizing the "ng-model" angular directive both in the "checkbox" control and in the "radio" control.
+  </p>
+  </div>
+  <hr>
+
+
+  <div ng-controller="SpicyController">
+  <p>Did I agree with the terms? {{review.terms}}</p>
+  <p>What color did I selected? {{review.color}}</p>
+ 
+  <input ng-model="review.terms" type="checkbox" /> I agree to the terms
+  <input ng-model="review.color" type="radio" value="red" /> Red
+  <input ng-model="review.color" type="radio" value="blue" /> Blue
+  <input ng-model="review.color" type="radio" value="green" /> Green
+
+</div>
+</body>
+</html>

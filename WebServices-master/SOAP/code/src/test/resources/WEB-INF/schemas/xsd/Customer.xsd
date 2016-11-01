@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://www.academy-softtek.com/soap"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+	xmlns:tns="http://www.academy-softtek.com/soap">
+
+	<xs:element name="getCustomerByIdRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="id" type="xs:string" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="getCustomerByIdResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="customer" type="tns:customer" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:complexType name="customer">
+		<xs:sequence>
+			<xs:element name="id" type="xs:string" />
+			<xs:element name="companyName" type="xs:string" />
+			<xs:element name="email" type="xs:string" />
+			<xs:element name="notes" type="xs:string" />
+			<xs:element name="phone" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>

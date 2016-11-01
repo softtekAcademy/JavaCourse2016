@@ -1,0 +1,14 @@
+﻿body { font-size: 1em; width: 970px; margin: 0 auto; }
+
+div#filters { text-align:right; margin: 20px 5px; }
+
+li.vacation { float: left; display:inline-block; background-color: #CCC; padding: 15px; margin: 10px; }
+li.vacation button { width: 100%; padding: 10px 0; background-color: #00CC00; font-weight: bold; }
+li.vacation > p { margin-bottom: 0; }
+li.vacation > ul { padding-left: 0; margin-bottom: 20px; }
+li.vacation > ul > li { list-style: none; color: #3333FF}
+
+li.highlighted { background-color: #FFCC00; }
+
+
+ul:after { display: block; clear:both; content: "."; visibility:hidden; height: 0; }

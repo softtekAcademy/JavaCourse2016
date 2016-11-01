@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<title>example 07</title>
+  </head>
+	<body>
+	  <h2>Form Example</h2>
+
+	  <form action="insertar.jsp" method="post" enctype="multipart/form-data" >
+	  	<fieldset>
+	  	    <legend>datos personales</legend>
+		  	<label for="name" >Nombre:</label><br />
+		  	<input type="text" id="name" name="name"/><br />
+		  	<label for="lastname" >Apellido:</label><br />
+		  	<input type="text" id="lastname" name="lastname" /><br />
+		  	<label for="password" >Contrase&ntilde;a</label><br />
+		  	<input type="password" id="password" name="password" /><br />
+		  	<label for="gender" >Genero</label><br />
+		  	<input id="gender" name="gender" type="radio" value="hombre" checked="checked" />hombre
+		  	<input  name="gender" type="radio" value="mujer" />mujer<br />
+		  	<label for="estado" >estado</label><br/>
+		  	<select id="estado" >
+		  		<option value="ags" >Aguascalientes</option>
+				<option>Baja California</option>
+				<option>Baja California Sur</option>
+				<option>Campeche</option>
+				<option>Chiapas</option>
+				<option>Chihuahua</option>
+				<option>Coahuila</option>
+				<option>Colima</option>
+				<option>Distrito Federal</option>
+				<option>Durango</option>
+				<option>Estado de M&eacute;xico</option>
+				<option>Guanajuato</option>
+				<option>Guerrero</option>
+				<option>Hidalgo</option>
+				<option>Jalisco</option>
+				<option>Michoac&aacute;n</option>
+				<option>Morelos</option>
+				<option>Nayarit</option>
+				<option>Nuevo Le&oacute;n</option>
+				<option>Oaxaca</option>
+				<option>Puebla</option>
+				<option>Quer&eacute;taro</option>
+				<option>Quintana Roo</option>
+				<option>San Luis Potos&iacute;</option>
+				<option>Sinaloa</option>
+				<option>Sonora</option>
+				<option>Tabasco</option>
+				<option>Tamaulipas</option>
+				<option>Tlaxcala</option>
+				<option>Veracruz</option>
+				<option>Yucat&aacute;n</option>
+				<option>Zacatecas</option>
+		  	</select>
+		  	<br />
+		  	
+
+		  	<br />
+		  	<label for="photo" >Subir mi foto</label><br />
+		  	<input type="file" id="photo" name="photo" /><br />
+
+		  	<label for="comments" >comentarios</label>
+		  	<br/>
+		  	<textarea id="comments" name="comments" ></textarea><br />
+
+		  	<input type="reset" name="limpiar" value="Borrar" />
+		  	<input type="submit" name="enviar" value="Guardar" />
+	  	</fieldset>
+	  </form>
+        <br />
+	<a href="html5.html">advanced form example</a>
+
+	</body>
+</html>

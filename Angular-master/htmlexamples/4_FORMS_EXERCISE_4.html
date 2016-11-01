@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<style type="text/css">
+</style>
+  <meta charset="UTF-8">
+  <title>Forms</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+<script>
+(function(angular) {
+  'use strict';
+angular.module('customTriggerExample', [])
+ .controller('ExampleController', ['$scope', function($scope) {
+   $scope.user = {};
+ }]);
+})(window.angular);</script>
+  
+
+  
+</head>
+<body ng-app="customTriggerExample">
+
+<hr>
+  <div>
+  <strong>DESCRIPTION:</strong>
+  </div>
+  <div>
+  <p>
+  This example shows view to model updates can be customized.
+  <br>
+	
+  <br><br> 
+  Important thing to notice: <br>
+  1. First input text has an on blur view to model updates, meaning model will be updated after the focus on the text box has been moved.  
+  <br>
+  2. Second input text has default view to model upddates.
+  <br>
+  3. Thid input text has a delay of 250 milliseconds before view to model updates take place.
+  
+  </p>
+  </div>
+  <hr>
+
+  <div ng-controller="ExampleController">
+  <form>
+    Name:
+    <input type="text" ng-model="user.name" ng-model-options="{ updateOn: 'blur' }" /><br />
+    Last name:
+    <input type="text" ng-model="user.lastname" /><br />
+    Other data:
+    <input type="text" ng-model="user.data" ng-model-options="{ debounce: 250 }"/><br />
+	
+  </form>
+  <pre>username = "{{user.name}}"</pre>
+  <pre>userdata = "{{user.lastname}}"</pre>
+  <pre>userdata = "{{user.data}}"</pre>
+  
+</div>
+</body>
+</html>

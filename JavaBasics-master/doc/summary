@@ -1,0 +1,70 @@
+Lesson1. Java Technology
+    + Java Examples 
+        - Hello World Application
+    + Additional Topics
+        - Explain the basics of STS (Spring Tool Suite)
+        - Explain the basics of Maven
+        - Explain the basics of Git / GitHub.
+    + Suggested Exercises:
+        - Create from the start all the HelloWorld example using STS. Avoid Copy/Paste practice.
+        - Get from GitHub all material from Java Basics module. 
+          (New | Other | Maven | Check out Maven Projects from SCM)
+        
+Lesson2. Introduction to Oriented Object Programming
+    + Examples
+        - NewCar / NewCarTest: a simple example about Polymorphism (Overriding)
+        - OverloadExample: a simple example about Polymorphism (Overloading)
+        - StringTestClass: a simple example about Strings in Java.
+    + Additional Topics
+        - Explain the basics about project structure suggested by Maven (location of functionalities, 
+          test cases, resources, so on).
+        - Explain the basics of JavaDoc
+        - Explain importance of follow Code Conventions of the Client or Softtek.
+        - Briefing about The Static Code Analysis Tools (PMD, Findbugs, CheckStyle) 
+    + Suggested Exercises:
+        - Run examples of Lesson2 using STS.
+        - Debug examples of Lesson2 using STS (using breakpoints, run step by step, checking variables 
+          values, etc).
+
+Lesson3. Introduction to Classes, Objects and Methods
+    + Examples
+        - CommonFrameworksExampleTest: Simple common example to use JUnit and Log4J frameworks.
+        - CheckStringPerformance / CheckStringPerformanceTest: analyze performance related to handle
+          Strings in Java.
+        - Singleton: Implementation about Singleton Pattern. 
+    + Additional Topics
+        - Explain the basics about log4.xml file and Trace levels.
+        - Explain the basics about Continuous Integration and its relation with Build Tool (for 
+          instance Maven), Test Cases (for instance JUnit, PowerMock, etc), Log files information 
+          (Log4J configuration and log files 
+          inside Enterprise App), etc.
+    + Suggested Exercises:
+        - Change the Trace Level (Error, Info, Debug, etc) modifying the log4.xml file. Test using 
+          CommonFrameworksExampleTest class.
+        - Modify CheckStringPerformance / CheckStringPerformanceTest, add functionality to use 
+          StringBuffer class and analyze results.
+        - Modify timeout of TestCases or times send to buss.concatStrings() or buss.concatStrings2() 
+          in order to get a Fail from Test case.
+        - Complete testGetInstance_CheckMemoryLocation() of SingletonPatternTest class to be sure 
+          that a couple of calls of getInstance() methods returns the same object. Tip, use Assert 
+          functions to analyze memory directions of an object.
+        - Complete testGetMessage() of SingletonPatternTest class. Tip, review ideas from 
+          testGetInstance_HappyPath() test case.
+          
+Lesson4. Abstract Classes-Interfaces-Inheritance-Polymorphism
+    + Examples
+        - BusinessException: Example of a custom Exception.
+        - CheckPerformance / CheckStringPerformance / CheckStringPerformanceTest: analyze performance 
+          related to handle Strings in Java. It is a reload version using interfaces.
+    + Additional Topics
+        - Briefing about Anti-Patterns (Gold-Hammer, etc). 
+    + Suggested Exercises:
+        - Create your custom exception to handle a specific business rule.
+        - Modify timeout of TestCases or times send to buss.execute() in order to get a Fail 
+          from Test case.
+        - Complete testExecute_SizeFinalString() of CheckStringPerformanceTest class (Lesson 4). 
+          The final string concatenated should be lower than 200 characters, create a test case 
+          in order to validate it. Tip, use String functions and Assert functions.          
+        - Complete testExecute_SpecificException() of CheckStringPerformanceTest class (Lesson 4).
+          Create a Test Case in order to validate error message received after to call execute() method
+          sending the corresponding values for that scenario. Tip, use try/catch and Assert functions. 

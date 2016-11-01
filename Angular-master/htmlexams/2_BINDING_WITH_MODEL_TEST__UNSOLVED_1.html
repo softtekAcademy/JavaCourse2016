@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>2-way binding</title>
+  
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+  <script>
+	(function(angular) {
+	  'use strict';
+	var myApp = angular.module('spicyApp1', []);
+
+	myApp.controller('SpicyController', ['$scope', function($scope) {
+		$scope.spice = 'very';
+
+		$scope.chiliSpicy = function() {
+			$scope.spice = 'chili';
+		};
+
+		$scope.jalapenoSpicy = function() {
+			$scope.spice = 'jalapeño';
+		};
+	}]);
+	})(window.angular);  
+  </script>
+  
+
+  
+</head>
+
+<body ng-app="spicyApp1">
+
+
+  <hr>
+  <div>
+  <strong>TEST DESCRIPTION:</strong>
+  </div>
+  <div>
+  <p>You need to make sure the "EXAM RESULTS" section relfects automatically the responses from the "EXAM QUESTIONS" section in real time.  
+  Basically, you need to implement 2-way binding between the HTML controls in the "EXAM QUESTION" section and the "EXAM RESULT" section that read the model.
+  
+  </p>
+  </div>
+  <hr>
+
+
+  <div ng-controller="SpicyController">
+  <hr>
+  <p>EXAM RESULTS</p>
+  <p>What is 2-way binding? </p>
+  <p>What is an expression? </p>
+  <p>What is ng-model? </p>
+  <p>What is ng-bind? </p>
+  
+ 
+
+  <hr>
+ <p>EXAM QUESTIONS</p>
+ 
+  <br>
+   <p>What is 2-way binding?</p> 
+  <br>
+   <input  type="radio" value="10" /> The automated synchronization of data between the MODEL and the VIEW.  If MODEL changes, VIEW changes.  If VIEW changes, MODEL changes.
+  <br>
+  <input type="radio" value="0" /> The automated synchronization of data between the MODEL and the VIEW.  If MODEL changes, VIEW does not change.  If VIEW changes, MODEL changes.
+
+  <br>
+   <p>What is an expression?</p> 
+  <br>
+  <input type="radio" value="10" /> Angular specific constructs that access model variables and functions and that are evaluated within double curly braces {{}}
+  <br>
+  <input type="radio" value="0" /> HTML specific constructs that compute data
+
+  <br>
+   <p>What is ng-model?</p> 
+  <br>
+  <input type="radio" value="10" /> Angular specific directive that associates an HTML control with a specific property in the model to implement 2-way binding between the HTML control and the model property.
+  <br>
+  <input  type="radio" value="0" /> HTML attribute for declaring an HTML element as a function in the controller.
+
+  <br>
+   <p>What is ng-bind?</p> 
+  <br>
+  <input  type="radio" value="10" /> An angular specific directive that is equivalent of an expression in curly braces.  It will read a property from the model and will place it in the view.
+  <br>
+  <input  type="radio" value="0" /> Angular specific directive that associates an HTML control with a specific property in the model to implement 2-way binding between the HTML control and the model property. 
+  
+  
+</div>
+</body>
+</html>

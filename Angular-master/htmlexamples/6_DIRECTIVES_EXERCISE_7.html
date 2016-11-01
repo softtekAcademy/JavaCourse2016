@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+<style>
+</style>
+  <meta charset="UTF-8">
+  <title>Directives</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+  <script>
+	(function(angular) {
+	  'use strict';
+	angular.module('docsSimpleDirective', [])
+	  .controller('Controller', ['$scope', function($scope) {
+		$scope.technicalTraining = {
+		  topic: 'Angular',
+		  description: 'The AngularJS client-side framework will be introduced.'
+		};
+		$scope.managerialTraining = {
+		  topic: 'Negotiation',
+		  description: 'Negotiation techniques will be introduced.'
+		};
+	  }])
+	  .directive('myTrainingElementDirective', function() {
+		return {
+		  restrict: 'E',
+		  scope: {
+		  actualTraining:'=training'
+		  },
+		  templateUrl: '/my-training.html'
+		};
+	  });
+	})(window.angular);  
+  </script>
+</head>
+<body ng-app="docsSimpleDirective">
+
+  <hr>
+  <div>
+  <strong>DESCRIPTION:</strong>
+  </div>
+  <div>
+  <p>
+  This exercise defines one attribute directive that has its own scope.  This directive's scope is passed as parameter its parent controller's scope for 
+printing the contents of both training programs (technical and managerial).  <br><br>
+  <strong>NOTE: </strong> Notice the "scope" option used in the directive's definition.  It has actualTraining:='=training' WHERE <br>
+  &nbsp;&nbsp;<strong>actualTraining</strong>: Is the value used in the template for matching the properties in the scope.
+  &nbsp;&nbsp;<strong>training</strong>: Is the argument this directive receives when used.
+  
+ <br> <strong>NOTE: </strong> Notice how the template is  referencing the "actualTraining" property now.
+ <br> <strong>NOTE: </strong> The directive (at utilization time) need to pass an argument in this way training="technicalTraining" or "managerialTraining" so directive knows what content to print.
+  
+  <br><br>
+  </p>
+  </div>
+  <hr>
+
+  
+  
+  <div ng-controller="Controller">
+  <strong>ELEMENT DIRECTIVE FOR DISPLAYING THE TECHNICAL TRAINING PROGRAM:</strong><br> <my-training-element-directive training="technicalTraining"></my-training-element-directive>
+  <br><br>
+  <strong>ELEMENT DIRECTIVE FOR DISPLAYING THE MANAGERIAL TRAINING PROGRAM:</strong><br> <my-training-element-directive training="managerialTraining"></my-training-element-directive>
+	<br>
+
+  
+
+  </div>
+
+
+
+<script type="text/ng-template" id="/my-training.html">
+        <strong>Training topic:</strong> {{actualTraining.topic}} <strong>Description:</strong> {{actualTraining.description}}
+</script>
+
+
+</body>
+</html> 

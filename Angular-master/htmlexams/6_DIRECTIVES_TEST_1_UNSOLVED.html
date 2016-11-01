@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Directives</title>
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-animate.js"></script>
+  <script>
+	(function() {
+	  var app = angular.module('gemStore', []);
+
+	  app.controller('StoreController', function() {
+		this.products = gems;
+	  });
+	  
+	app.controller("TabController", function() {
+		this.tab = 1;
+
+		this.isSet = function(checkTab) {
+		  return this.tab === checkTab;
+		};
+
+		this.setTab = function(setTab) {
+		  this.tab = setTab;
+		};
+	   });
+	  
+
+	 app.directive('productGallery',function(){
+		return{
+		  restrict:'E',
+		  templateUrl:'/product-gallery.html',
+		  controller:function(){
+			this.current = 0;
+			this.setCurrent = function(imageNumber){
+			  this.current = imageNumber || 0;
+			};
+		  },
+		  controllerAs:'gallery'
+		  
+		};
+	  });
+
+
+	  app.controller("ReviewController", function(){
+
+		this.review = {};
+
+		this.addReview = function(product){
+		  product.reviews.push(this.review);
+		  this.review = {};
+		};
+
+	  });
+
+
+	  app.directive("productDescriptions", function() {
+		return {
+		  restrict: 'E',
+		  templateUrl: "/product-description.html"
+		};
+	  });
+
+	  app.directive("productReviews", function() {
+		return {
+		  restrict: 'E',
+		  templateUrl: "/product-reviews.html"
+		};
+	  });
+
+	  app.directive("productSpecs", function() {
+		return {
+		  restrict:"A",
+		  templateUrl: "/product-specs.html"
+		};
+	  });
+
+	  var gems = [
+		{
+		  name: 'Azurite',
+		  description: "Some gems have hidden qualities beyond their luster, beyond their shine... Azurite is one of those gems.",
+		  shine: 8,
+		  price: 110.50,
+		  rarity: 7,
+		  color: '#CCC',
+		  faces: 14,
+		  images: [
+			"gem-02.gif",
+			"gem-05.gif",
+			"gem-09.gif"
+		  ],
+		  reviews: [{
+			stars: 5,
+			body: "I love this gem!",
+			author: "joe@example.org"
+		  }, {
+			stars: 1,
+			body: "This gem sucks.",
+			author: "tim@example.org"
+		  }]
+		}
+	  ];
+	})();
+  
+  </script>
+</head>
+
+
+<body ng-app="gemStore" ng-controller="StoreController as store">
+  <hr>
+  <div>
+  <strong>TEST DESCRIPTION:</strong>
+  </div>
+  <div>
+  <p>
+  The exam needs to be solved as follows:<br>
+  &nbsp;<strong>1.</strong> Take a look at the definition of the "TabController" controller.  Understand what it is doing now.  Understad the entire code as well.  
+  Then load the page in chrome (create folder in C:\, copy the files 6_DIRECTIVES_TEST_8_UNSOLVED.html, gem-09.gif, gem-02.gif, and gem-05.gif, and load the .html in chrome).
+  Notice there are 3 tabs "Description", "Specs", and "Review" that you can navigate.  The purpose of this test will be creating a directive for the code that is
+  drawing these 3 tab control.
+  <br>
+  &nbsp;<strong>2.</strong> Write a new directive definition called "productTabs".  Make sure this directive is an element directive.  Ensure it
+  redirects to the new product-tabs.html file you will create in a subsequent step below.  Make sure this directive defines a controller
+  with an alias of "tab" and replicates the behavior the "TabController" above implements now.
+  <br>
+  &nbsp;<strong>3.</strong> Ensure you move the content within "Product Tabs  BEGINS" / "Product Tabs  ENDS" block to a new template called
+  product-gallery.html.   You won't need the controller any longer provided that the controller will be provided by the directive (step 2 above) "productTabs" above.
+  This means that you can't simply copy paste, the code in this new template may need a small change.
+  <br>
+  &nbsp;<strong>4.</strong> In the place left by step 3 in the body of the HTML invoke the new "productTabs" directive instead.
+  <br>
+  &nbsp;<strong>5.</strong> Remove the definition of the controller "TabController" as it won't be needed any longer.
+  <BR>
+  NOTES: This implementation has a few directives that implement controllers now.  Take a look at them.  There ares also some templates.  Take a look 
+  at them too to understand how to create your directive and template.
+  </p>
+  </div>
+  <hr>
+
+    <!--  Store Header  -->
+    <header>
+      <h1 class="text-center">CRAFTED GEMS</h1>
+      <h2 class="text-center">STORE</h2>
+    </header>
+
+    <!--  Products Container  -->
+    <div class="list-group">
+      <!--  Product Container  -->
+      <div class="list-group-item" ng-repeat="product in store.products">
+        <h3>{{product.name}} <em class="pull-right">{{product.price | currency}}</em></h3>
+
+        <!-- Image Gallery  -->
+       <product-gallery></product-gallery>
+
+        <!-- Product Tabs  BEGINS	-->
+        <section ng-controller="TabController as tab">
+          <ul class="nav nav-pills">
+            <li ng-class="{ active:tab.isSet(1) }">
+              <a href ng-click="tab.setTab(1)">Description</a>
+            </li>
+            <li ng-class="{ active:tab.isSet(2) }">
+              <a href ng-click="tab.setTab(2)">Specs</a>
+            </li>
+            <li ng-class="{ active:tab.isSet(3) }">
+              <a href ng-click="tab.setTab(3)">Reviews</a>
+            </li>
+          </ul>
+          <!--  Description Tab's Content  -->
+		  <product-descriptions ng-show="tab.isSet(1)" ></product-descriptions>
+          <!--  Spec Tab's Content  -->
+		  <div product-specs ng-show="tab.isSet(2)"></div>
+          <!--  Review Tab's Content  -->
+		  <product-reviews ng-show="tab.isSet(3)"></product-reviews>
+        </section>
+        <!-- Product Tabs  ENDS	-->
+
+		
+      </div>
+    </div>
+
+
+
+<!--	TEMPLATES BELOW.	-->
+<script type="text/ng-template" id="/product-gallery.html">
+       <div ng-show="product.images.length">
+          <div class="img-wrap">
+            <img ng-src="{{product.images[gallery.current]}}" />
+          </div>
+          <ul class="img-thumbnails clearfix">
+            <li class="small-image pull-left thumbnail" ng-repeat="image in product.images">
+              <img ng-src="{{image}}" />
+            </li>
+          </ul>
+        </div> 
+</script>
+
+
+
+<script type="text/ng-template" id="/product-description.html">
+	<h4>Description</h4>
+	<blockquote>{{product.description}}</blockquote>
+</script>
+
+	
+<script type="text/ng-template" id="/product-specs.html">
+	<h4>Specs</h4>
+	<ul class="list-unstyled">
+	  <li>
+		<strong>Shine</strong>
+		: {{product.shine}}</li>
+	  <li>
+		<strong>Faces</strong>
+		: {{product.faces}}</li>
+	  <li>
+		<strong>Rarity</strong>
+		: {{product.rarity}}</li>
+	  <li>
+		<strong>Color</strong>
+		: {{product.color}}</li>
+	</ul>
+
+</script>
+
+	
+<script type="text/ng-template" id="/product-reviews.html">
+	<!--  Product Reviews List -->
+	<ul>
+	  <h4>Reviews</h4>
+	  <li ng-repeat="review in product.reviews">
+		<blockquote>
+		  <strong>{{review.stars}} Stars</strong>
+		  {{review.body}}
+		  <cite class="clearfix">—{{review.author}}</cite>
+		</blockquote>
+	  </li>
+	</ul>
+
+	<!--  Review Form -->
+	<form name="reviewForm" ng-controller="ReviewController as reviewCtrl" ng-submit="reviewCtrl.addReview(product)">
+
+	  <!--  Live Preview -->
+	  <blockquote >
+		<strong>{{reviewCtrl.review.stars}} Stars</strong>
+		{{reviewCtrl.review.body}}
+		<cite class="clearfix">—{{reviewCtrl.review.author}}</cite>
+	  </blockquote>
+
+	  <!--  Review Form -->
+	  <h4>Submit a Review</h4>
+	  <fieldset class="form-group">
+		<select ng-model="reviewCtrl.review.stars" class="form-control" ng-options="stars for stars in [5,4,3,2,1]" title="Stars">
+		  <option value>Rate the Product</option>
+		</select>
+	  </fieldset>
+	  <fieldset class="form-group">
+		<textarea ng-model="reviewCtrl.review.body" class="form-control" placeholder="Write a short review of the product..." title="Review"></textarea>
+	  </fieldset>
+	  <fieldset class="form-group">
+		<input ng-model="reviewCtrl.review.author" type="email" class="form-control" placeholder="jimmyDean@example.org" title="Email" />
+	  </fieldset>
+	  <fieldset class="form-group">
+		<input type="submit" class="btn btn-primary pull-right" value="Submit Review" />
+	  </fieldset>
+	</form>
+</script>
+
+	
+
+	
+	
+  </body>
+</html>

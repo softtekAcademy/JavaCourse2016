@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Controllers - Route provider</title>
+  
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-route.js"></script>
+  <script>
+  
+(function(angular) {
+'use strict';
+
+/* App Module */
+angular.module('demoApp', ['ngRoute'])
+
+.controller('HomePageCtrl', function($scope, $routeParams) {
+	  $scope.title = "Hello AngularJS2 student!"
+	  $scope.news = "This is the home page.  You have several links you can click on.  Try them out."
+	})
+.controller('UsersListCtrl', function($scope, $routeParams) {
+	$scope.users = ["Lorenzo", "Thomas", "Fabio", "John", "Pluto", "Peter"]
+	})
+.controller('UsersDetailCtrl', function($scope, $routeParams) {
+    // Get rider ID from the url
+    $scope.username = $routeParams.id;
+	})
+	
+.config(['$routeProvider', 
+  function( $routeProvider) {
+  // Define routes 
+  $routeProvider.
+    when('/homepage', 
+        { templateUrl: 'partial/homepage.html',
+          controller: 'HomePageCtrl'}).
+
+    when('/users', 
+        { templateUrl: 'partial/users.html',
+          controller: 'UsersListCtrl'}).	
+
+     when('/users/:id',
+     { templateUrl: 'partial/user.html',
+        controller: 'UsersDetailCtrl'}).
+
+     when('/contacts',
+        { templateUrl: 'partial/contacts.html',
+          controller: ContactPageCtrl}).
+
+    otherwise({redirectTo: 'homepage'});
+  }]);
+})(window.angular);  
+ 
+ 
+
+
+/**
+ * Concat Page Controller
+ */
+function ContactPageCtrl($scope) {
+
+    $scope.signin = function () {
+
+        /*
+         NOTE: here you might call the server side service to login
+         */
+
+        // Display Error
+        $scope.errorMsg = true;
+
+        alert("LOGIN: " + $scope.username + " - " + $scope.password)
+
+    }
+}
+  </script>
+</head>
+
+
+<body ng-app="demoApp">
+  <hr>
+  <div>
+  <strong>DESCRIPTION:</strong>
+  </div>
+  <div>
+  <p>
+  There are 2 ways in which we can use controllers in Angular.  This exercise uses # 2.<br>
+  <br><strong>1.</strong> Using the ng-controller directive at an HTML element level so everything under the ng-controller directive falls into the scope of the 
+  controller, or;<br>
+  <br><strong>2.</strong> Using the route, routeParams, & routeProvider angular-specific services.  For this purpose you need to make sure that the following takes place:
+  <br>&nbsp;&nbsp;<strong>a.</strong> Your module definition must receive as a dependency the "ngRoute" service so route, routeProvider, and routeParmams associated services are availabe in your angular app;
+  <br>&nbsp;&nbsp;<strong>b.</strong> You need to define an angular module, a set of controllers that the provider service will invoke based on the URL that was
+  clicked on, and you need to use configure the module (using .config) to instruct the routeProvider service what controllers to invoke based on the URL format;
+  <br>&nbsp;&nbsp;<strong>c.</strong> You need to define a template per re-direction location the routeProvider service will redirect to based on the URL.  You can use
+  either a separate *.html file or you can use the ng-template directive for defining the templates in the same *.html file on which the redirection is taking place.
+  <br>&nbsp;&nbsp;<strong>d.</strong> You need to incorporate logic for each controller that is associated with a re-direction location (and with a template) so proper action takes
+  place once routeProvider service re-directs to a [templateURL, Controller] pair.
+  <br>&nbsp;&nbsp;<strong>e.</strong> You need to use the ng-view directive to draw the content of the template the routeProvider service redirected to.
+  
+  
+  <br><br>
+  Note 1: The routeParms service will have the parameters that were passed after clicking on a link.
+  Note 2: Don't forget to import the angular-route.js library for the $route service to work properly.<strong>THIS MODULE IS OPTIONAL TO ANGULAR.  THE MODULES ARE LOCATED HERE: https://code.angularjs.org/1.4.3/</strong>
+  
+  
+  
+  </p>
+  </div>
+  <hr>
+
+<!-- MENU -->
+<div class="text-center" >
+    <h2>ngRoute/ngView demo</h2>
+
+    <div class="btn-group">
+
+        <a class="btn btn-primary" href="#/homepage">HOME</a>
+        <a class="btn btn-primary" href="#/users">USERS:</a>
+
+        <a class="btn  btn-default" href="#/users/thomas">Thomas</a>
+        <a class="btn btn-default" href="#/users/fabio">Fabio</a>
+        <a class="btn btn-default" href="#/users/lorenzo">Lorenzo</a>
+        <a class="btn btn-primary" href="#/contacts">CONTACTS</a>
+
+
+    </div>
+</div>
+
+<hr>
+
+<!-- VIEW CONTAINER -->
+<div ng-view></div>
+    
+
+    
+<!-- 
+Inline Templates (Partials) 
+In a real scenario you will create several external html files
+-->
+    
+<!-- HOMEPAGE VIEW -->
+<script type=text/ng-template id=partial/homepage.html>
+  <div class="jumbotron">    
+    <h1>{{title}}</h1>
+    <p class="lead">{{news}}</p>
+  </div>
+</script>
+
+
+ <!-- USERS VIEW  -->   
+<script type=text/ng-template id=partial/users.html>
+<h2>ALL USERS</h2>
+    <!-- SEARCH BOX -->
+    <input type="search" class="form-control"
+           ng-model="search"
+           placeholder="search user">
+    <hr>
+    <ul class="list-group">
+        <!--USER LIST-->
+        <li class="list-group-item"
+            ng-repeat="item in users | filter: search">
+            <!--RANDOM IMAGE-->
+            <img src="http://lorempixel.com/50/50/sports/{{$index}}"  
+                class="img-circle">
+            <!--LINK TO USER DETAILS-->
+            <a ng-href="#/users/{{item}}">{{item}}</a>
+        </li>
+    </ul>
+</script>
+
+<!-- USER DETAILS -->    
+<script type=text/ng-template id=partial/user.html>
+      <h2>USER VIEW: {{username}}</h2>
+</script>
+
+<!-- CONTACTS -->
+<script type=text/ng-template id=partial/contacts.html>    
+  <div class="jumbotron">Contact form</div>
+</script>
+    
+
+</body>
+
+
+</html>

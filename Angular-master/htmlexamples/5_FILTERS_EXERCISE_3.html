@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Filters - Exercise 3</title>
+  
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+  <script>
+  
+	angular.module('myReverseFilterApp', [])
+	.filter('reverse', function() {
+		return function(input, uppercase) {
+			input = input || '';
+			var out = '';
+
+		  for (var i = 0; i < input.length; i++) {
+			 out = input.charAt(i) + out;
+		  }
+		  // conditional based on optional argument
+		  if (uppercase) {
+			 out = out.toUpperCase();
+		  }
+		  return out;
+	   };
+	})
+	.controller('MyController', function($scope) {
+	   $scope.greeting = 'hello';
+	}); 
+	
+  </script>
+</head>
+
+<body ng-app="myReverseFilterApp">
+
+	<hr>
+		<strong>TEST DESCRIPTION:</strong>
+		<p>The following sample filter reverses a text string. In addition, it conditionally makes the text upper-case.</p>
+	<hr>
+	<br>
+
+	<div ng-controller="MyController">
+		<input ng-model="greeting" type="text">
+		<br> No filter: {{greeting}}
+		<br> Reverse: {{greeting|reverse}}
+		<br> Reverse + uppercase: {{greeting|reverse:true}}
+	</div> 
+  
+</body>
+</html>

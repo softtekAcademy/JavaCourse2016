@@ -1,0 +1,4 @@
+.square li {
+	list-style: katakana-iroha; 
+}
+

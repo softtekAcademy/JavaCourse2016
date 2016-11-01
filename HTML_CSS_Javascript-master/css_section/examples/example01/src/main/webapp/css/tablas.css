@@ -1,0 +1,41 @@
+#productos{
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
+}
+
+#productos td,#productos th{
+  border-top:1px solid black;
+  border-left:1px solid black;
+  text-align:center;
+  padding: 2px 2px 2px 2px;
+}
+
+#productos thead th{
+  background-color:#c3c3c3;
+  color:#ffffff;
+}
+/*
+#productos tr.odd td{
+  background-color:#a3cfe1;
+  color:#ffffff;
+}
+
+
+#productos tr.even td{
+  background-color:#e4c3a1;
+  color:#ffffff;
+}
+*/
+
+#productos tr:nth-child(even) {
+    color: #000;
+    background: #CCC;
+}
+
+#productos tr:nth-child(odd) {
+    color: #000;
+    background: #fff;
+}
+
+
+

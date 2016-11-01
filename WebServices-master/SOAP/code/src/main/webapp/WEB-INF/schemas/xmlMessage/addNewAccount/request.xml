@@ -1,0 +1,10 @@
+<!-- 
+Defining expected request
+ -->
+<addNewAccountRequest>
+	<accountNumber>String</accountNumber>
+	<ownerFirstName>Sting</ownerFirstName>
+	<ownerLastName>Sting</ownerLastName>
+	<password>String</password>
+	<amount>Double</amount>
+</addNewAccountRequest

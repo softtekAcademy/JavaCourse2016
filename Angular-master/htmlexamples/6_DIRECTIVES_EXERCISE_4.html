@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<style>
+.strike {
+    text-decoration: line-through;
+}
+.bold {
+    font-weight: bold;
+}
+.has-error {
+    color: red;
+    background-color: yellow;
+}
+</style>
+  <meta charset="UTF-8">
+  <title>Directives</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+  <script>
+  </script>
+</head>
+<body ng-app="">
+
+  <hr>
+  <div>
+  <strong>DESCRIPTION:</strong>
+  </div>
+  <div>
+  <p>
+  This exercise shows how to use the ng-class directive.
+  <br><br>
+  &nbsp;&nbsp;<strong>ng-class: </strong> Sets CSS classes dynamically on HTML elements when the expression associated with the ng-class directive evaluates to true.<br>
+  <br><br>
+  </p>
+  </div>
+  <hr>
+
+  
+  
+    <p ng-class="{strike: deleted, bold: important, 'has-error': error}">Map Syntax Example</p>
+<label>
+   <input type="checkbox" ng-model="deleted">
+   deleted (apply "strike" class)
+</label><br>
+<label>
+   <input type="checkbox" ng-model="important">
+   important (apply "bold" class)
+</label><br>
+<label>
+   <input type="checkbox" ng-model="error">
+   error (apply "has-error" class)
+</label>
+<hr>
+
+
+</body>
+</html>

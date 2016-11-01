@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <style>
+  </style>
+  <meta charset="UTF-8">
+  <title>Forms</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+  <script>
+  </script>
+  
+
+  
+</head>
+<body ng-app="formExample">
+
+<hr>
+  <div>
+  <strong>DESCRIPTION:</strong>
+  </div>
+  <div>
+  <p>
+  This example show a group of controls that compose a Form.  Notice that the form's controls (input text boxes and radio buttons) make use
+  of the ng-model directive that tells angular that these controls are tied to the model using an object called "user".
+  <br><br> 
+  Important thing to notice: <br>
+  1. The "novalidate" word a the form level disables native browser's form validation.  That is not necessary when working with
+  angular provided angular controls provide validation.  <br>
+  2. The value of ngModel won't be set unless it passes validation for the input field. For example: inputs of type email must have a value in the form of user@domain.
+  <br>
+  
+  </p>
+  </div>
+  <hr>
+
+  
+  
+  <div ng-controller="ExampleController">
+  <form novalidate class="simple-form">
+    Name: <input type="text" ng-model="user.name" /><br />
+    E-mail: <input type="email" ng-model="user.email" /><br />
+    Gender: <input type="radio" ng-model="user.gender" value="male" />male
+    <input type="radio" ng-model="user.gender" value="female" />female<br />
+    <input type="button" ng-click="reset()" value="Reset" />
+    <input type="submit" ng-click="update(user)" value="Save" />
+  </form>
+  <pre>form = {{user | json}}</pre>
+  <pre>master = {{master | json}}</pre>
+</div>
+
+<script>
+  angular.module('formExample', [])
+    .controller('ExampleController', ['$scope', function($scope) {
+      $scope.master = {};
+
+      $scope.update = function(user) {
+        $scope.master = angular.copy(user);
+      };
+
+      $scope.reset = function() {
+        $scope.user = angular.copy($scope.master);
+      };
+
+      $scope.reset();
+    }]);
+</script>
+</body>
+</html>

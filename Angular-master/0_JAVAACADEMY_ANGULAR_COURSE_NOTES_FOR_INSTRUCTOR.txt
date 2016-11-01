@@ -1,0 +1,11 @@
+
+Steps:
+
+1. Simply open the /presentations/*.pptx in order (1, 2, ..., 7);
+
+2. Each *.pptx cross reference examples and tests in 
+/htmlexamples and /htmlpresentations.
+
+
+3. All *.HTML files need to be opened in CHROME browser to work correctly.
+

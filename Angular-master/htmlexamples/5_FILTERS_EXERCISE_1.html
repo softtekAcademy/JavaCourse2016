@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Filters - Exercise 1</title>
+  
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+  <script>
+  
+	angular.module('expressionExample', [])
+	.controller('ExampleController', function($window,$scope) {
+		$scope.name = 'World';
+		$scope.greet = function() {
+			$window.alert('Hello ' + $scope.name);
+		};
+	});
+	
+  </script>
+</head>
+
+<body ng-app="expressionExample">
+
+	<hr>
+		<strong>TEST DESCRIPTION:</strong>
+		<p>The example uses the filter called filter. This filter reduces arrays into sub arrays based on conditions. The filter can be applied in the view template with markup like {{ctrl.array | filter:'a'}}, which would do a fulltext search for "a". However, using a filter in a view template will reevaluate the filter on every digest, which can be costly if the array is big.</p>
+		<p>The example below therefore calls the filter directly in the controller. By this, the controller is able to call the filter only when needed (e.g. when the data is loaded from the backend or the filter expression is changed).</p>  
+	<hr>
+	<br>
+
+	<div ng-controller="ExampleController">
+	   Name: <input ng-model="name" type="text"/>
+	   <button ng-click="greet()">Greet</button>
+	   <button ng-click="window.alert('Should not see me')">Won't greet</button>
+	</div> 
+	
+</body>
+</html>

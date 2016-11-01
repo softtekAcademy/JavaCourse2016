@@ -1,0 +1,9 @@
+<!--
+Defining expected response 
+ -->
+<accountDetailsResponse>
+	<accountNumber>String</accountNumber>
+	<ownerFirstName>String</ownerFirstName>
+	<ownerLastName>String</ownerLastName>
+	<amount>Double</amount>
+</accountDetailsResponse>

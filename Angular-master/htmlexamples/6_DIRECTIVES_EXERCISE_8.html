@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+<style>
+</style>
+  <meta charset="UTF-8">
+  <title>Directives</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+  <script>
+	(function(angular) {
+	  'use strict';
+	angular.module('docsTimeDirective', [])
+	  .controller('Controller', ['$scope', function($scope) {
+		$scope.format = 'M/d/yy h:mm:ss a';
+	  }])
+	  .directive('myCurrentTime', ['$interval', 'dateFilter', function($interval, dateFilter) {
+
+		function link(scope, element, attrs) {
+		  var format,
+			  timeoutId;
+
+		  function updateTime() {
+			element.text(dateFilter(new Date(), format));
+		  }
+
+		  scope.$watch(attrs.myCurrentTime, function(value) {
+			format = value;
+			updateTime();
+		  });
+
+		  element.on('$destroy', function() {
+			$interval.cancel(timeoutId);
+		  });
+
+		  // start the UI update process; save the timeoutId for canceling
+		  timeoutId = $interval(function() {
+			updateTime(); // update DOM
+		  }, 1000);
+		}
+
+		return {
+		  link: link
+		};
+	  }]);
+	})(window.angular);  
+  </script>
+</head>
+<body ng-app="docsTimeDirective">
+
+  <hr>
+  <div>
+  <strong>DESCRIPTION:</strong>
+  </div>
+  <div>
+  <p>
+  In this example we will build a directive that displays the current time. Once a second, it updates the DOM to reflect the current time.  <br><br>
+Directives that want to modify the DOM typically use the link option. link takes a function with the following signature, function link(scope, element, attrs) { ... } where:
+<br>
+<br>
+
+&nbsp;&nbsp;<strong>scope</strong> is an Angular scope object.
+<br>&nbsp;&nbsp;<strong>element</strong> is the jqLite-wrapped element that this directive matches.
+<br>&nbsp;&nbsp;<strong>attrs</strong> is a hash object with key-value pairs of normalized attribute names and their corresponding attribute values.
+  
+  
+  
+  <br><br>
+  </p>
+  </div>
+  <hr>
+
+  
+  
+  <div ng-controller="Controller">
+  Date format: <input ng-model="format"> <hr/>
+  Current time is: <span my-current-time="format"></span>
+</div>
+</body>
+</html>

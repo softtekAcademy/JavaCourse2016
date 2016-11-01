@@ -1,0 +1,11 @@
+.margin-left-10 { margin-left: 10px !important; }
+.margin-right-10 { margin-right: 10px !important; }
+.margin-top-15 { margin-top: 15px !important; }
+
+.highlighted-red {
+    font-size: 90%;
+    color: #c7254e;
+    background-color: #f9f2f4;
+    border-radius: 4px;
+    font-weight: bolder;
+}

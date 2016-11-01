@@ -1,0 +1,26 @@
+.box1{
+	border: 1px solid black;
+}
+
+
+.box2{
+	border: 1px solid black;
+	width: 300px;
+	height: 100px;
+	margin-left: 23px;
+	padding-left: 10px;
+	padding-top: 10px;
+}
+
+.box3{
+	background: url("img/sparkly-silver-rock-background-5757719.jpg") no-repeat;
+	width: 400px;
+	height: 300px;
+	color: red;
+	text-align: center;
+	padding-top: 50px;
+}
+
+.box3:hover{
+	background-repeat: repeat;
+}

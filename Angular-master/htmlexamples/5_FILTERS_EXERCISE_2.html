@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Filters - Exercise 2</title>
+  
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+  <script>
+  
+	angular.module('FilterInControllerModule', [])
+	. controller('FilterController', function(filterFilter, $scope) {
+		this.array = [
+			{name: 'Tobias'},
+			{name: 'Jeff'},
+			{name: 'Brian'},
+			{name: 'Igor'},
+			{name: 'James'},
+			{name: 'Brad'}
+		];
+		this.filteredArray = filterFilter(this.array, 'a');
+	});
+	
+  </script>
+</head>
+
+<body ng-app="FilterInControllerModule">
+
+	<hr>
+		<strong>TEST DESCRIPTION:</strong>
+		<p>The following example shows how Angular Expressions are evaluated against a scope object.</p>
+		<p>Angular expressions do not have access to global variables like window, document or location.</p>
+	<hr>
+	<br>
+
+	<div ng-controller="FilterController as ctrl">
+		<div> All entries: 
+			<span ng-repeat="entry in ctrl.array">{{entry.name}} </span>
+		</div>
+		<div> Entries that contain an "a":
+			<span ng-repeat="entry in ctrl.filteredArray">{{entry.name}} </span>
+		</div>
+	</div> 
+</body>
+</html>

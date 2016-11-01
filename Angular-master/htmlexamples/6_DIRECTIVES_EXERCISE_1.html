@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <style>
+.animate-show {
+  line-height: 20px;
+  opacity: 1;
+  padding: 10px;
+  border: 1px solid black;
+  background: white;
+}
+
+.animate-show.ng-hide-add.ng-hide-add-active,
+.animate-show.ng-hide-remove.ng-hide-remove-active {
+  -webkit-transition: all linear 0.5s;
+  transition: all linear 0.5s;
+}
+
+.animate-show.ng-hide {
+  line-height: 0;
+  opacity: 0;
+  padding: 0 10px;
+}
+
+.check-element {
+  padding: 10px;
+  border: 1px solid black;
+  background: white;
+}  
+  </style>
+  <meta charset="UTF-8">
+  <title>Directives</title>
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-animate.js"></script>
+  <script>
+  </script>
+</head>
+
+
+<body ng-app="ngAnimate">
+  <hr>
+  <div>
+  <strong>DESCRIPTION:</strong>
+  </div>
+  <div>
+  <p>
+  This exercise shows how to use 3 directives: ng-app, ng-show, & ng-hide.  It is a must.  It tells angular that anything under this directive is an angular application.
+  <br><br>
+  &nbsp;&nbsp;<strong>ng-app: </strong> Associates an HTML element with an angular application module.<br>
+  &nbsp;&nbsp;<strong>ng-show: </strong> Shows an html portion when the expression associated with the ng-show directive is true.<br>
+  &nbsp;&nbsp;<strong>ng-show: </strong> Hides an html portion when the expression associated with the ng-show directive is true.
+  <br><br>
+  NOTE: This exercise makes use of the optional angular library called angular-animate.js.   All angular optional libraries can be found under https://code.angularjs.org/1.4.3/.  Remember that
+  the core library used to run angular is angular.min.js.
+  <br>
+  NOTE: This exercise is loading the ngAnimate optional module using ng-app.
+  
+  
+  
+  </p>
+  </div>
+  <hr>
+
+  Click me: <input type="checkbox" ng-model="myCheckboxValue" aria-label="Toggle ngHide"><br/>
+<div>
+  Show:
+  <div class="check-element animate-show" ng-show="myCheckboxValue">
+    <span class="glyphicon glyphicon-thumbs-up"></span> I show up when your checkbox is checked.
+  </div>
+</div>
+<div>
+  Hide:
+  <div class="check-element animate-show" ng-hide="myCheckboxValue">
+    <span class="glyphicon glyphicon-thumbs-down"></span> I hide when your checkbox is checked.
+  </div>
+</div>
+<br><br><br><br>
+WITHOUT USING ANIMATION:	
+<div>
+  Show:
+  <div ng-show="myCheckboxValue">
+    I show up when your checkbox is checked.
+  </div>
+</div>
+
+<div>
+  Hide:
+  <div ng-hide="myCheckboxValue">
+    I hide when your checkbox is checked.
+  </div>
+</div>
+
+
+</body>
+</html>

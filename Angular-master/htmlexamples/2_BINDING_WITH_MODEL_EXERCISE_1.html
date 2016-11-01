@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>2-way binding</title>
+  
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+  <script>
+	(function(angular) {
+	  'use strict';
+	var myApp = angular.module('spicyApp1', []);
+
+	myApp.controller('SpicyController', ['$scope', function($scope) {
+		$scope.spice = 'very';
+
+		$scope.chiliSpicy = function() {
+			$scope.spice = 'chili';
+		};
+
+		$scope.jalapenoSpicy = function() {
+			$scope.spice = 'jalapeño';
+		};
+	}]);
+	})(window.angular);  
+  </script>
+  
+
+  
+</head>
+
+<body ng-app="spicyApp1">
+
+
+  <hr>
+  <div>
+  <strong>TEST DESCRIPTION:</strong>
+  </div>
+  <div>
+  <p>This tests reflect 2 way binding between an expression and a variable in the model within the scope.  The variable "spice" in the model is updated by the functions defined in the controller and that are invoked when clicking on the buttons.  
+  Notice that both buttons invoke the controller functions by utilizing the "ng-click" angular directive that receives as argument the name of the function to be executed upon clicking on them.
+  Every time the "spice" variable changes value Angular automatically updates the view (HTML page) with the new value.  This feature of automatically
+  updating the view (HTML page) when the counterpart model changes is called 2-way binding.</p>
+  </div>
+  <hr>
+
+
+  <div ng-controller="SpicyController">
+ <button ng-click="chiliSpicy()">Chili</button>
+ <button ng-click="jalapenoSpicy()">Jalapeño</button>
+ <p>The food is {{spice}} spicy!</p>
+</div>
+</body>
+</html>

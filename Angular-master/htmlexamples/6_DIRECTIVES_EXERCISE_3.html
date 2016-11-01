@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Directives</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+  <script>
+  </script>
+</head>
+
+
+<body ng-app="">
+
+  <hr>
+  <div>
+  <strong>DESCRIPTION:</strong>
+  </div>
+  <div>
+  <p>
+  This exercise shows how to use the ng-click directive.
+  <br><br>
+  &nbsp;&nbsp;<strong>ng-click: </strong> The ngClick directive allows you to specify custom behavior when an element is clicked.<br>
+  <br><br>
+  NOTE: Notice that the ng-init directive is used to initialize the variable count=0 in the model.  Every time the button is clicked the count property
+  is incremented by one.
+  </p>
+  </div>
+  <hr>
+
+  
+  <button ng-click="count = count + 1" ng-init="count=0">
+  Increment
+</button>
+<span>
+  count: {{count}}
+</span>
+</body>
+</html>

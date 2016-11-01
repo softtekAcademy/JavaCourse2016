@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Directives</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+  <script>
+  </script>
+</head>
+
+
+<body ng-app ng-init="classmates = [{name:'Alberto', age:23},{name:'Alejandra', age:26},{name:'Julio', age:24},{name:'Roberto', age:23},{name:'Alina', age:23},{name:'Fernando', age:23}]">
+  <hr>
+  <div>
+  <strong>DESCRIPTION:</strong>
+  </div>
+  <div>
+  <p>
+  This exercise shows how to use 5 directives: ng-app, ng-init, ng-repease, ng-model, & ng-if.
+  <br><br>
+  &nbsp;&nbsp;<strong>ng-app: </strong> Associates an HTML element with an angular application module.<br>
+  &nbsp;&nbsp;<strong>ng-init: </strong> Initializes model properties in the scope.<br>
+  &nbsp;&nbsp;<strong>ng-repeat: </strong> Use to loop to a collection of objects. <br>
+  &nbsp;&nbsp;<strong>ng-model: </strong> Associates an HTML element with a model property.<br>
+  &nbsp;&nbsp;<strong>ng-if: </strong> Do something if expression associated with ng-if directive is true.
+  <br><br>
+  NOTE: Notice that this exercise uses ng-app without any reference to any angular module.  This is correct.  ng-app takes an optional argument
+  which is the module name. If none is provided, the ng-app by itself lets Angular knows that every HTML under the ng-app directive
+  needs to be treated as an angular application.
+  </p>
+  </div>
+  <hr>
+
+  I have {{classmates.length}} classmates. They are:<br>
+  <input type="search" ng-model="q" placeholder="filter classmates..." aria-label="filter classmates" />
+  <li ng-repeat="classmate in classmates | filter:q as results">
+      [{{$index + 1}}] {{classmate.name}} who is {{classmate.age}} years old.
+  </li>
+  <li ng-if="results.length == 0">
+      <strong>No results found...</strong>
+  </li>
+  
+</body>
+</html>

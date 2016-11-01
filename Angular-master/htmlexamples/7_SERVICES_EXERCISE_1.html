@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+<style>
+</style>
+  <meta charset="UTF-8">
+  <title>Services</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+  <script>
+	(function(angular) {
+	  'use strict';
+	angular.
+	 module('myServiceModule', []).
+	  controller('MyController', ['$scope','notify', function ($scope, notify) {
+		$scope.callNotify = function(msg) {
+		  notify(msg);
+		};
+	  }]).
+	 factory('notify', ['$window', function(win) {
+		var msgs = [];
+		return function(msg) {
+		  msgs.push(msg);
+		  if (msgs.length == 3) {
+			win.alert(msgs.join("\n"));
+			msgs = [];
+		  }
+		};
+	  }]);
+	})(window.angular);  
+  </script>
+</head>
+<body ng-app="myServiceModule">
+
+  <hr>
+  <div>
+  <strong>DESCRIPTION:</strong>
+  </div>
+  <div>
+  <p>
+  This example registers a service called "notify" using the factory API at the module level.  It receives as a dependency the $window angular-specific service.
+  The service will launch an alert window to the user if the service is invoked 3 times.  The alert will be thrown using the $window angular-specific service.
+<br>
+<br>
+Note: Angular-specific $window service documentation can be found at https://docs.angularjs.org/api/ng/service/$window.
+
+  
+  
+  <br><br>
+  </p>
+  </div>
+  <hr>
+
+  
+  
+
+<div id="simple" ng-controller="MyController">
+  <p>Let's try this simple notify service, injected into the controller...</p>
+  <input ng-init="message='test'" ng-model="message" >
+  <button ng-click="callNotify(message);">NOTIFY</button>
+  <p>(you have to click 3 times to see an alert)</p>
+</div>
+</body>
+</html>

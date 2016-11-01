@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Directives</title>
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-animate.js"></script>
+  <script>
+  	(function() {
+	  var app = angular.module('store-directives', []);
+
+
+	 app.directive('productGallery',function(){
+		return{
+		  restrict:'E',
+		  templateUrl:'/product-gallery.html',
+		  controller:function(){
+			this.current = 0;
+			this.setCurrent = function(imageNumber){
+			  this.current = imageNumber || 0;
+			};
+		  },
+		  controllerAs:'gallery'
+		  
+		};
+	  });
+	  app.directive("productTabs", function() {
+		return {
+		  restrict: "E",
+		  templateUrl: "/product-tabs.html",
+		  controller: function() {
+			this.tab = 1;
+
+			this.isSet = function(checkTab) {
+			  return this.tab === checkTab;
+			};
+
+			this.setTab = function(activeTab) {
+			  this.tab = activeTab;
+			};
+		  },
+		  controllerAs: "tab"
+		};
+	  });
+
+	  app.directive("productDescriptions", function() {
+		return {
+		  restrict: 'E',
+		  templateUrl: "/product-description.html"
+		};
+	  });
+
+	  app.directive("productReviews", function() {
+		return {
+		  restrict: 'E',
+		  templateUrl: "/product-reviews.html"
+		};
+	  });
+
+	  app.directive("productSpecs", function() {
+		return {
+		  restrict:"A",
+		  templateUrl: "/product-specs.html"
+		};
+	  });
+
+	})();
+	
+	(function() {
+	  var app = angular.module('gemStore', ['store-directives']);
+
+	  app.controller('StoreController', function() {
+		this.products = gems;
+	  });
+
+	  app.controller("ReviewController", function(){
+
+		this.review = {};
+
+		this.addReview = function(product){
+		  product.reviews.push(this.review);
+		  this.review = {};
+		};
+
+	  });
+
+
+	  var gems = [
+		{
+		  name: 'Azurite',
+		  description: "Some gems have hidden qualities beyond their luster, beyond their shine... Azurite is one of those gems.",
+		  shine: 8,
+		  price: 110.50,
+		  rarity: 7,
+		  color: '#CCC',
+		  faces: 14,
+		  images: [
+			"gem-02.gif",
+			"gem-05.gif",
+			"gem-09.gif"
+		  ],
+		  reviews: [{
+			stars: 5,
+			body: "I love this gem!",
+			author: "joe@example.org"
+		  }, {
+			stars: 1,
+			body: "This gem sucks.",
+			author: "tim@example.org"
+		  }]
+		}
+	  ];
+	})();
+  
+  </script>
+</head>
+
+
+<body ng-app="gemStore" ng-controller="StoreController as store">
+  <hr>
+  <div>
+  <strong>TEST DESCRIPTION:</strong>
+  </div>
+  <div>
+  <p>
+  Exam description:<br> We are modifying the StoreController controller so it fetches the JSON with store products from a real HTTP URL using the angular-specific
+  $http service.<br><br>
+  &nbsp;<strong>1.</strong> Update the StoreController as follows: 
+  <br>&nbsp;&nbsp;a. Ensure the controller receives as dependency the built-in angular $http service;
+  <br>&nbsp;&nbsp;b. Delete the "this.products = gems;" line;
+  <br>&nbsp;&nbsp;c. Put these lines instead in order:
+  <br>&nbsp;&nbsp;&nbsp;&nbsp;a.1 "var store = this;"
+  <br>&nbsp;&nbsp;&nbsp;&nbsp;a.2 "store.products = [];"
+  
+  <br>&nbsp;&nbsp;c. Open a web browser and go to this url "http://myjson.com/".  Put the contents of the 7_SERVICES_TEST_2.json file into the web page blank area and hit "Save".  Copy the URL that the page tells you to use.  This URL will
+  retrieve the JSON you just put.
+  <br>&nbsp;&nbsp;d. Write the next lines after c.1 and c.2 above: Ensure the $http service issues a get operation against the URL you got in step c above.  On the .success callback make sure it assigns the data it got back (actual JSON) to the store.products variable as follows: "store.products = data;" <br>
+<strong>Note: Feel free to check this example: http://www.w3schools.com/angular/angular_http.asp </strong>  
+  <br>&nbsp;&nbsp;a. Delete the "var gems = [....];" definition as the product catalog will come from the URL now.
+  
+  </p>
+  </div>
+  <hr>
+
+  
+    <!--  Store Header  -->
+    <header>
+      <h1 class="text-center">CRAFTED GEMS</h1>
+      <h2 class="text-center">STORE</h2>
+    </header>
+
+    <!--  Products Container  -->
+    <div class="list-group">
+      <!--  Product Container  -->
+      <div class="list-group-item" ng-repeat="product in store.products">
+        <h3>{{product.name}} <em class="pull-right">{{product.price | currency}}</em></h3>
+
+        <!-- Image Gallery  -->
+       <product-gallery></product-gallery>
+
+        <!-- Product Tabs  -->
+        <product-tabs></product-tabs>
+
+      </div>
+    </div>
+
+
+
+
+<script type="text/ng-template" id="/product-gallery.html">
+       <div ng-show="product.images.length">
+          <div class="img-wrap">
+            <img ng-src="{{product.images[gallery.current]}}" />
+          </div>
+          <ul class="img-thumbnails clearfix">
+            <li class="small-image pull-left thumbnail" ng-repeat="image in product.images">
+              <img ng-src="{{image}}" />
+            </li>
+          </ul>
+        </div> 
+</script>
+
+<script type="text/ng-template" id="/product-tabs.html">
+	<section>
+	  <ul class="nav nav-pills">
+		<li ng-class="{ active:tab.isSet(1) }">
+		  <a href ng-click="tab.setTab(1)">Description</a>
+		</li>
+		<li ng-class="{ active:tab.isSet(2) }">
+		  <a href ng-click="tab.setTab(2)">Specs</a>
+		</li>
+		<li ng-class="{ active:tab.isSet(3) }">
+		  <a href ng-click="tab.setTab(3)">Reviews</a>
+		</li>
+	  </ul>
+
+	  <!--  Description Tab's Content  -->
+	  <product-descriptions ng-show="tab.isSet(1)" ></product-descriptions>
+
+	  <!--  Spec Tab's Content  -->
+	  <div product-specs ng-show="tab.isSet(2)"></div>
+
+	  <!--  Review Tab's Content  -->
+	  <product-reviews ng-show="tab.isSet(3)"></product-reviews>
+
+	</section>
+</script>
+
+
+<script type="text/ng-template" id="/product-description.html">
+	<h4>Description</h4>
+	<blockquote>{{product.description}}</blockquote>
+</script>
+
+	
+<script type="text/ng-template" id="/product-specs.html">
+	<h4>Specs</h4>
+	<ul class="list-unstyled">
+	  <li>
+		<strong>Shine</strong>
+		: {{product.shine}}</li>
+	  <li>
+		<strong>Faces</strong>
+		: {{product.faces}}</li>
+	  <li>
+		<strong>Rarity</strong>
+		: {{product.rarity}}</li>
+	  <li>
+		<strong>Color</strong>
+		: {{product.color}}</li>
+	</ul>
+
+</script>
+
+	
+<script type="text/ng-template" id="/product-reviews.html">
+	<!--  Product Reviews List -->
+	<ul>
+	  <h4>Reviews</h4>
+	  <li ng-repeat="review in product.reviews">
+		<blockquote>
+		  <strong>{{review.stars}} Stars</strong>
+		  {{review.body}}
+		  <cite class="clearfix">—{{review.author}}</cite>
+		</blockquote>
+	  </li>
+	</ul>
+
+	<!--  Review Form -->
+	<form name="reviewForm" ng-controller="ReviewController as reviewCtrl" ng-submit="reviewCtrl.addReview(product)">
+
+	  <!--  Live Preview -->
+	  <blockquote >
+		<strong>{{reviewCtrl.review.stars}} Stars</strong>
+		{{reviewCtrl.review.body}}
+		<cite class="clearfix">—{{reviewCtrl.review.author}}</cite>
+	  </blockquote>
+
+	  <!--  Review Form -->
+	  <h4>Submit a Review</h4>
+	  <fieldset class="form-group">
+		<select ng-model="reviewCtrl.review.stars" class="form-control" ng-options="stars for stars in [5,4,3,2,1]" title="Stars">
+		  <option value>Rate the Product</option>
+		</select>
+	  </fieldset>
+	  <fieldset class="form-group">
+		<textarea ng-model="reviewCtrl.review.body" class="form-control" placeholder="Write a short review of the product..." title="Review"></textarea>
+	  </fieldset>
+	  <fieldset class="form-group">
+		<input ng-model="reviewCtrl.review.author" type="email" class="form-control" placeholder="jimmyDean@example.org" title="Email" />
+	  </fieldset>
+	  <fieldset class="form-group">
+		<input type="submit" class="btn btn-primary pull-right" value="Submit Review" />
+	  </fieldset>
+	</form>
+</script>
+
+	
+
+	
+	
+  </body>
+</html>

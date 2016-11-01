@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Controllers - Route provider</title>
+  
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-route.js"></script>
+  <script>
+  
+(function(angular) {
+'use strict';
+
+/* App Module */
+angular.module('demoApp', ['ngRoute'])
+
+.controller('HomePageCtrl', function($scope, $routeParams) {
+	  $scope.title = "Hello AngularJS2 student!"
+	  $scope.news = "This is the home page.  You have several links you can click on.  Try them out."
+	})
+.controller('UsersListCtrl', function($scope, $routeParams) {
+	$scope.users = ["Lorenzo", "Thomas", "Fabio", "John", "Pluto", "Peter"]
+	})
+.controller('UsersDetailCtrl', function($scope, $routeParams) {
+    // Get rider ID from the url
+    $scope.username = $routeParams.id;
+	})
+	
+.config(['$routeProvider', 
+  function( $routeProvider) {
+  // Define routes 
+  $routeProvider.
+    when('/homepage', 
+        { templateUrl: 'partial/homepage.html',
+          controller: 'HomePageCtrl'}).
+
+    when('/users', 
+        { templateUrl: 'partial/users.html',
+          controller: 'UsersListCtrl'}).	
+
+     when('/users/:id',
+     { templateUrl: 'partial/user.html',
+        controller: 'UsersDetailCtrl'}).
+
+     when('/contacts',
+        { templateUrl: 'partial/contacts.html',
+          controller: ContactPageCtrl}).
+
+    otherwise({redirectTo: 'homepage'});
+  }]);
+})(window.angular);  
+ 
+ 
+
+
+/**
+ * Concat Page Controller
+ */
+function ContactPageCtrl($scope) {
+
+    $scope.signin = function () {
+
+        /*
+         NOTE: here you might call the server side service to login
+         */
+
+        // Display Error
+        $scope.errorMsg = true;
+
+        alert("LOGIN: " + $scope.username + " - " + $scope.password)
+
+    }
+}
+  </script>
+</head>
+
+
+<body ng-app="demoApp">
+  <hr>
+  <div>
+  <strong>TEST DESCRIPTION:</strong>
+  </div>
+  <div>
+  <p>
+  The exam needs to be solved as follows:<br>
+  &nbsp;<strong>1.</strong> Go ahead and study the example that appears at the bottom of this page: https://docs.angularjs.org/api/ngRoute/service/$route
+  <br>
+  You need to identify how parameters are passed to the controller via the $routeParams service when the URL clicked is associated with both a book and a chapter.
+  <br>
+  &nbsp;<strong>2.</strong> Implement a new ExperienceCtrl at the module level;  This controller takes "skill1", "skill2", and "skill3" properties from the routeParam service 
+  and assigns them to counterpart properties in the scope named "ability1", "ability2", and "ability3" respectively.  Make sure you use your knowledge
+  obtained in step 1 above.
+  <br>
+  &nbsp;<strong>3.</strong> Change the module configuration so it detects URL of this form '/experience/skill1/SKILL_YOU_HAVE/skill2/SKILL_YOU_HAVE/skill3/SKILL_YOU_HAVE'.  
+  Notice that you need to tell the $routeProvider service that SKILL_YOU_HAVE (3 occurrences in this case) are 3 different parameters that needs to be stored
+  in the $routeParams service.  Then implement redirection to [ExperienceCtrl, experience.html] template.
+  <br>
+  Check your findings for item 1 above to do this.
+  <br>
+  &nbsp;<strong>4.</strong> Provide a new tab that reads "My Professional Experience" having as href format the following:
+  <br>"#/experience/skill1/java/skill2/perl/skill3/unix"
+  <br>Substitute java, perl, and unix for your top 3 skills in the IT field.
+  <br>
+  &nbsp;<strong>4.</strong> Add a new template called "experience.html" and make sure it writes the following message: <br>
+  My 3 main IT abilities are FIRST_SKILL, SECOND_SKILL, and THIRD_SKILL.
+  <BR>
+  Where FIRST_SKILL, SECOND_SKILL, and THIRD_SKILL should be passed as parameters to the ExperienceCtrl controller when clicking on the tab in step 4.
+  
+
+  
+  
+  </p>
+  </div>
+  <hr>
+
+<!-- MENU -->
+<div class="text-center" >
+    <h2>ngRoute/ngView demo</h2>
+
+    <div class="btn-group">
+
+        <a class="btn btn-primary" href="#/homepage">HOME</a>
+        <a class="btn btn-primary" href="#/users">USERS:</a>
+
+        <a class="btn  btn-default" href="#/users/thomas">Thomas</a>
+        <a class="btn btn-default" href="#/users/fabio">Fabio</a>
+        <a class="btn btn-default" href="#/users/lorenzo">Lorenzo</a>
+        <a class="btn btn-primary" href="#/contacts">CONTACTS</a>
+		
+		
+
+
+    </div>
+</div>
+
+<hr>
+
+<!-- VIEW CONTAINER -->
+<div ng-view></div>
+    
+
+    
+<!-- 
+Inline Templates (Partials) 
+In a real scenario you will create several external html files
+-->
+    
+<!-- HOMEPAGE VIEW -->
+<script type=text/ng-template id=partial/homepage.html>
+  <div class="jumbotron">    
+    <h1>{{title}}</h1>
+    <p class="lead">{{news}}</p>
+  </div>
+</script>
+
+
+ <!-- USERS VIEW  -->   
+<script type=text/ng-template id=partial/users.html>
+<h2>ALL USERS</h2>
+    <!-- SEARCH BOX -->
+    <input type="search" class="form-control"
+           ng-model="search"
+           placeholder="search user">
+    <hr>
+    <ul class="list-group">
+        <!--USER LIST-->
+        <li class="list-group-item"
+            ng-repeat="item in users | filter: search">
+            <!--RANDOM IMAGE-->
+            <img src="http://lorempixel.com/50/50/sports/{{$index}}"  
+                class="img-circle">
+            <!--LINK TO USER DETAILS-->
+            <a ng-href="#/users/{{item}}">{{item}}</a>
+        </li>
+    </ul>
+</script>
+
+<!-- USER DETAILS -->    
+<script type=text/ng-template id=partial/user.html>
+      <h2>USER VIEW: {{username}}</h2>
+</script>
+
+<!-- CONTACTS -->
+<script type=text/ng-template id=partial/contacts.html>    
+  <div class="jumbotron">Contact form</div>
+</script>
+    
+
+
+</body>
+
+
+</html>

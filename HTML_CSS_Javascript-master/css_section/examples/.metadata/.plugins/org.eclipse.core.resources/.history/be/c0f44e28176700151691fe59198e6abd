@@ -1,0 +1,15 @@
+.link-especial{
+	color: red;
+	text-decoration: none;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.link-especial:hover{
+	color: gray;
+	font-size: 22px;
+	font-weight: bolder;
+	text-decoration: underline;
+	cursor: default;
+}
+

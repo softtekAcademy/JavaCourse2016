@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+<style>
+</style>
+  <meta charset="UTF-8">
+  <title>Directives</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+  <script>
+	(function(angular) {
+	  'use strict';
+	angular.module('docsSimpleDirective', [])
+	  .controller('Controller', ['$scope', function($scope) {
+		$scope.training = {
+		  topic: 'Angular',
+		  description: 'The AngularJS client-side framework will be introduced.'
+		};
+	  }])
+	  .directive('myTrainingElementDirective', function() {
+		return {
+		  restrict: 'E',
+		  templateUrl: '/my-training.html'
+		};
+	  })
+	  .directive('myTrainingAttributeDirective', function() {
+		return {
+		  restrict: 'A',
+		  templateUrl: '/my-training.html'
+		};
+	  });
+	})(window.angular);  
+  </script>
+</head>
+<body ng-app="docsSimpleDirective">
+
+  <hr>
+  <div>
+  <strong>DESCRIPTION:</strong>
+  </div>
+  <div>
+  <p>
+  This exercise defines 2 directives that redirects to the same template URL file.  One of the directives was created as an Element only directive using restrict: 'E' option, and the other one
+was created as an attribute directive using the restrict:'A' option.  <br><br>
+  <strong>NOTE: </strong> Notice that the directives are being used 2 times each.  One of the usages is correct, the other one is not correct. 
+When the directive is incorrectly used it will not print.  We need to use them correctly pero their definition (restrict:'E' directives will only work if used as an HTML element, restrict:'A' directives will only work if used as an attribute of an already defined HTML element.})  
+ <br> <strong>NOTE: </strong> Notice that the directives are using the scope of the controller.  There is an option to define a directive to have its own scope created.  We will review this in the next exercise.
+  
+  <br><br>
+  </p>
+  </div>
+  <hr>
+
+  
+  
+  <div ng-controller="Controller">
+  <strong>ELEMENT DIRECTIVE CONTENTS USED CORRECTLY:</strong><br> <my-training-element-directive></my-training-element-directive>
+  <br><br>
+  <strong>ATTRIBUTE DIRECTIVE CONTENTS USED INCORRECTLY:</strong> <div my-training-attribute-directive></div>
+	<br>
+  <strong>ELEMENT DIRECTIVE CONTENTS USED INCORRECTLY:</strong><br> <div my-training-element-directive></div>
+  <br><br>
+  <strong>ATTRIBUTE DIRECTIVE CONTENTS USED INCORRECTLY:</strong> <my-training-attribute-directive></my-training-element-directive>
+
+  
+
+  </div>
+
+
+
+<script type="text/ng-template" id="/my-training.html">
+       Welcome to the Angular Training Program!  This is my first directive!  It is intended to hold this template!<br> <strong>Training topic:</strong> {{training.topic}} <strong>Description:</strong> {{training.description}}
+</script>
+
+
+</body>
+</html> 

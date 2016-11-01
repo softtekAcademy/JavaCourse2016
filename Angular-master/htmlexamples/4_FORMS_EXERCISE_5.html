@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<style type="text/css">
+</style>
+  <meta charset="UTF-8">
+  <title>Forms</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+<script>
+(function(angular) {
+  'use strict';
+var app = angular.module('form-example1', []);
+
+var INTEGER_REGEXP = /^\-?\d+$/;
+app.directive('integer', function() {
+  return {
+    require: 'ngModel',
+    link: function(scope, elm, attrs, ctrl) {
+      ctrl.$validators.integer = function(modelValue, viewValue) {
+        if (ctrl.$isEmpty(modelValue)) {
+          // consider empty models to be valid
+          return true;
+        }
+
+        if (INTEGER_REGEXP.test(viewValue)) {
+          // it is valid
+          return true;
+        }
+
+        // it is invalid
+        return false;
+      };
+    }
+  };
+});
+
+app.directive('username', function($q, $timeout) {
+  return {
+    require: 'ngModel',
+    link: function(scope, elm, attrs, ctrl) {
+    var usernames = ['Jim', 'John', 'Jill', 'Jackie'];
+
+      ctrl.$asyncValidators.username = function(modelValue, viewValue) {
+
+        if (ctrl.$isEmpty(modelValue)) {
+          // consider empty model valid
+          return $q.when();
+        }
+
+        var def = $q.defer();
+
+        $timeout(function() {
+          // Mock a delayed response
+          if (usernames.indexOf(modelValue) === -1) {
+            // The username is available
+            def.resolve();
+          } else {
+            def.reject();
+          }
+
+        }, 2000);
+
+        return def.promise;
+      };
+    }
+  };
+});
+})(window.angular);
+</script>
+  
+
+  
+</head>
+<body ng-app="form-example1">
+
+<hr>
+  <div>
+  <strong>DESCRIPTION:</strong>
+  </div>
+  <div>
+  <p>
+  This example shows how custom directives extend the validations associated with input type controls of the form "number" and "text".
+  <br>
+	
+  <br><br> 
+  Important thing to notice: <br>
+  1. If you input 11 in Size you will get an error message that comes from the "integer" directive. 
+  <br>
+  2. If you input "Jim" in username text you will get a message stating that the processing is taking place and an error message afterwards.  
+  The directive username already declares the Jim name as an already taken name, so validation fails.
+  <br>
+  
+  </p>
+  </div>
+  <hr>
+
+  <form name="form" class="css-form" novalidate>
+  <div>
+    Size (integer 0 - 10):
+    <input type="number" ng-model="size" name="size"
+           min="0" max="10" integer />{{size}}<br />
+    <span ng-show="form.size.$error.integer">The value is not a valid integer!</span>
+    <span ng-show="form.size.$error.min || form.size.$error.max">
+      The value must be in range 0 to 10!</span>
+  </div>
+
+  <div>
+    Username:
+    <input type="text" ng-model="name" name="name" username />{{name}}<br />
+    <span ng-show="form.name.$pending.username">Checking if this name is available...</span>
+    <span ng-show="form.name.$error.username">This username is already taken!</span>
+  </div>
+
+</form>
+</body>
+</html>

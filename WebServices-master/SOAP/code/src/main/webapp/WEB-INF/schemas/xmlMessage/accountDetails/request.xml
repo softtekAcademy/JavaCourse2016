@@ -1,0 +1,7 @@
+<!-- 
+Defining expected request
+ -->
+<accountDetailsRequest>
+	<accountNumber>String</accountNumber>
+	<password>String</password>
+</accountDetailsRequest>
