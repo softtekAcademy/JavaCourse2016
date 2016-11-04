@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Credit Card Validation</title>
+</head>
+<body>
+    <h1>Credit Card Validation Example</h1>
+    <p>
+    
+    <table border="1">
+        <caption>Choose HTTP Method to use</caption>
+        <tr>
+            <td>
+			    <form action="CreditCardValidationServlet" method="get">
+			        <ul style="list-style-type:circle">
+			            <li>by GET Method</li>
+			        </ul>
+			        <table>
+			            <tr>
+			                <td>
+			                    Credit Card Number:
+			                </td>
+			                <td>
+                                <input type="text" name="ccNumberParamGet">
+			                </td>
+			            </tr>
+			            <tr>
+                            <td>
+                                Authorization Card Number:
+                            </td>
+                            <td>
+                                <input type="text" name="authNumberParamGet">
+                            </td>
+			            </tr>
+			        </table>
+			        <input type="submit" value="GetSubmit">
+			    </form>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <form action="CreditCardValidationServlet" method="post">
+                    <ul style="list-style-type:circle">
+                        <li>by POST Method</li>
+                    </ul>
+                    <table>
+                        <tr>
+                            <td>
+                                Credit Card Number:
+                            </td>
+                            <td>
+                                <input type="text" name="ccNumberParamPost">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Authorization Card Number:
+                            </td>
+                            <td>
+                                <input type="text" name="authNumberParamPost">
+                            </td>
+                        </tr>
+                    </table>
+                    <input type="submit" value="PostSubmit" id="PostSubmit" name="PostSubmit">
+                </form>            
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://softtek.com/java/academy/web/XSDExample" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://softtek.com/java/academy/web/XSDExample">
+
+    <element name="productList" type="tns:ProductListType"></element>
+
+    <complexType name="ProductListType">
+    	<sequence>
+    		<element name="product" type="tns:ProductType" minOccurs="0" maxOccurs="unbounded"></element>
+    	</sequence>
+    </complexType>
+    
+    <complexType name="ProductType">
+        <sequence>
+            <element name="name" type="string"></element>
+            <element name="price" type="double"></element>
+            <element name="expiration" type="date"></element>
+        </sequence>
+        <attribute name="id" type="int"></attribute>
+    </complexType>
+</schema>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<productList xmlns="http://softtek.com/java/academy/web/XSDExample" 
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+             xsi:schemaLocation="http://softtek.com/java/academy/web/XSDExample XSD_Example.xsd ">
+<!-- productList-->
+    <product id="1">
+        <name>Product 001</name>
+        <price>14.90</price>
+        <expiration>2016-02-01</expiration>
+    </product>
+    <product id="2">
+        <name>Product 002</name>
+        <price>85.00</price>
+        <expiration>2016-02-01</expiration>
+    </product>    
+    <product id="3">
+        <name>Product 003</name>
+        <price>45.50</price>
+        <expiration>2016-02-01</expiration>
+    </product>
+</productList>

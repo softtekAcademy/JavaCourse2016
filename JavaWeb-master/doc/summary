@@ -1,0 +1,85 @@
+Lesson1. Java Web Introduction (Tomcat)
+    + HTML Examples 
+		- index.html, HomeController
+		- StaticContent.html
+    + Additional Topics
+        - Briefing other OpenSource Application Servers (JBossAS, GlassFish, Jetty, Geronimo so on)
+		- Briefing other Commercial Application Servers (WAS, WebLogic, so on)
+        - Configuring an Application Server inside Eclipse/STS
+		- Explain pros/cons to use the Application Server as external server, instance server configured inside IDE,
+		  a instance embedded (such as Tomcat Maven Plugin).
+    + Suggested Exercises:
+        - Create from the start all the HelloWorld example using STS Templates.
+		  (New | Other | Spring | Spring Project | Spring MVC Project)
+		- Deploy a WAR Application inside Tomcat by hand. Also practice Undeploy application.
+		- Deploy/Undeploy a WAR using Tomcat Maven Plugin.
+        - Get from GitHub all material from Java Web module. 
+          (New | Other | Maven | Check out Maven Projects from SCM)
+        
+Lesson2. Servlets
+    + Examples
+		- HelloWorldServlet (HTML response)
+		- HelloWorldServletTest (using PowerMock-Mockito)
+        - CreditCardValidationServlet Get Method (Text plain response)
+		- CreditCardValidationServlet Post Method, CreditCardValidation.html (JSON response)
+		- CreditCardValidationTest (Using JWebUnit, check Notes)
+        - GetProductDetailsServlet as XML.
+    + Additional Topics
+        - Briefing of Application Security (https://security.softtek.com/  Application Security section).
+		  (Injection, Cross-Site Scripting [XSS], so on)
+        - Explain the pros/cons about Get/Post methods.
+    + Suggested Exercises:
+        - Deploy JavaWeb application and test the examples of Lesson 2.
+		- Modify HelloWorldServlet in order to send to log information about Servlet Client 
+		  (suggestion use information from Session).
+		- Modify CreditCardValidation to execute same task when arrive a request by Get or Post method
+		  (suggestion use processRequest() method)
+		- Add a Test Case in order to validate a message when parameters are wrong.
+		- Develop a Unit Test for GetProductDetailsServlet
+        - Create and HTML page in order to send a [productId] parameter. Also, modify GetProductDetailsServlet 
+		  in order to receive that parameter, write in log file and modify dummyFactoryBean() 
+		  method as appropriate.
+		- Modify Unit Test according to new business rules for GetProductDetails
+
+Lesson3. JSP
+    + Examples
+        - SomeExamples.jsp, date.jsp
+        - ProductList.jsp
+		- ProductListTest (Using JWebUnit)
+        - showXML.jsp, XML_Example.xml, XSD_Example.xsd
+		- ShowXMLTest, analyze this one to use XMLUnit and JWebUnit. Change the showXML-Expected.xml and test again.
+		- showJSON.jsp, getJson.jsp
+		- View success.jsp directly in a Browser, after that view callingByPOST.jsp ... analyze results.
+		- errorHandlingExample.jsp, displayError.jsp		
+    + Additional Topics
+        - Briefing about when to use a Servlet and JSP.
+		- Briefing about error handling in an Web Application inside an Enterprise Solution.
+    + Suggested Exercises:
+        - Modify success.jsp page to throw an Exception when receive a request by GET method.
+		- Create a JSP similar to GetProductDetailsServlet
+		- Create two JPS pages in order to develop equivalent solution handled by CreditCardValidation.html and
+		  CreditCardValidationServlet artifacts.
+          
+Lesson4. JSTL
+    + Examples
+        - jstlExample.jsp, test sending 'true' to [execRedirectFlag] parameter and try again sending other value.
+		- getJsonJSTL.jsp
+		- catchJSTL.jsp
+		- ProductList_JSTL.jsp, analyze TagLib for Log4j, foreach and useBean.
+		- transformationExample.jsp, xsltExample.xsl
+		- TestSuite
+    + Additional Topics
+        - Analyze advantages/disadvantages between ProductList.jsp and ProductList_JSTL.jsp. 
+		- Analyze advantages/disadvantages to use or not TagLibs.
+		- Share importance about develop Unit Testing (concept used by Test Driven Development, Integration Test, 
+		  Agile Development, so on)
+    + Suggested Exercises:
+        - Create a JSP equivalent to errorHandlingExample.jsp/displayError.jsp but using JSTL (log4j taglib, so on). 
+		- Enable Test Cases for Servlets and JSP pages (check Notes), and check them.
+		
+NOTES:
+- Unit testing is skipped (see inside pom.xml the [skipTests] property).
+- Before to run Servlet/JSP Unit Test you have to need Web Application running.
+- Currently, the test cases are configured according to URL generated after to run your WebApplication 
+  using Tomcat Maven Plugin (tomcat6:run).
+- You can run all test cases sending "-DskipTests=false" parameter to run Maven.
