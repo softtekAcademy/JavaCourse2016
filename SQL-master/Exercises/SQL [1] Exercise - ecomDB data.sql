@@ -274,7 +274,7 @@ INSERT INTO USER(username, password, name, user_role_id, active) VALUES('carlos.
 INSERT INTO SHIP_TO(ship_to_id, user, name, address, city_id, zip_code, phone, email) VALUES(1,'jorge.gonzalez','Jorge Gonzalez','Ensenada',12,22800,'6461510000','jorge.gonzalezm@softtek.com');
 INSERT INTO SHIP_TO(ship_to_id, user, name, address, city_id, zip_code, phone, email) VALUES(2,'jorge.gonzalez','Jorge Gonzalez','Col. Obrera',158,86545,'9371502000','jorge.gonzalezm@softtek.com');
 INSERT INTO SHIP_TO(ship_to_id, user, name, address, city_id, zip_code, phone, email) VALUES(3,'carlos.fuentes','Jesus Gonzalez','Fracc. Rosales',54,38140,'4662204000','jesus.gonzalez@yahoo.com');
-INSERT INTO SHIP_TO(ship_to_id, user, name, address, city_id, zip_code, phone, email) VALUES(4,'carlos.fuentes','Carlos Fuentes','Col. Intependencia',12,02800,'6461510000','carlos.fuentes@gmail.com');;
+INSERT INTO SHIP_TO(ship_to_id, user, name, address, city_id, zip_code, phone, email) VALUES(4,'carlos.fuentes','Carlos Fuentes','Col. Intependencia',12,02800,'6461510000','carlos.fuentes@gmail.com');
 
 INSERT INTO UOM(uom_id, description) VALUES('pce','Piece');
 INSERT INTO UOM(uom_id, description) VALUES('pkg','Pack');
