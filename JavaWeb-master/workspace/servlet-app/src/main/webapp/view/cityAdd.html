@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Cities</title>
+	<meta charset="UTF-8">
+</head>
+<body>
+	<h3>New City</h3>
+	
+	<form action="/servlet-app/cities" method="post">
+		id: <input type="text" name="id"><br>
+		Description: <input type="text" name="description"><br>
+		State: 
+		<select name="stateId">
+			<option value="0" selected>- Select -</option>
+			<option value="1">Baja California</option>
+			<option value="2">Baja California Sur</option>
+		</select>
+		<br>
+		
+		<input type="submit" name="save" value="Save">
+	</form>
+	
+	<br>
+	<a href="/servlet-app/index.html">Return to Index</a>
+</body>
+</html>
