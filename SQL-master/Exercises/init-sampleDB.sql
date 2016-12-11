@@ -1,8 +1,8 @@
-/* Crear la DB, usuario y asignacion de privilegios con usuario roor*/
-CREATE database sampleDB;
-CREATE USER 'dbuser'@'%' IDENTIFIED BY 'dbuser';
+/* Crear la DB, usuario y asignacion de privilegios con usuario root */
+CREATE database myDB;
+CREATE USER myuser@'%' IDENTIFIED BY 'mypassword';
 
-GRANT ALL ON sampleDB.* TO 'dbuser'@'%';
+GRANT ALL ON myDB.* TO myuser@'%';
 
 
 /******** Luego conectar con el usuario 'dbuser' para crear las tablas *******/
