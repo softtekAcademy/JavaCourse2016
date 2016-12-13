@@ -9,47 +9,45 @@ import org.junit.Test;
 
 import com.softtek.java.academy.io.buffered.FileBufferedStreamResource;
 
-
 public class FileStreamResourceTest {
-    
-    @Before
-    public void setup() {
 
-        String basePath = System.getProperty("user.dir");
-        StringBuilder targetPath = new StringBuilder();
-        targetPath.append(basePath);
-        targetPath.append("/copy/Softtek.jpg");
+	@Before
+	public void setup() {
 
-        File file = new File(targetPath.toString());
+		String basePath = System.getProperty("user.dir");
+		StringBuilder targetPath = new StringBuilder();
+		targetPath.append(basePath);
+		targetPath.append("/copy/Softtek.jpg");
 
-        if (file.exists()) {
-            file.delete();
-        }
-    }
+		File file = new File(targetPath.toString());
 
-    
-    @Test
-    public void shouldCopyFileByStream() {
+		if (file.exists()) {
+			file.delete();
+		}
+	}
 
-        String basePath = System.getProperty("user.dir");
-        StringBuilder sourcePath = new StringBuilder();
-        sourcePath.append(basePath);
-        sourcePath.append("/work/Softtek.jpg");
+	@Test
+	public void shouldCopyFileByStream() {
 
-        StringBuilder targetPath = new StringBuilder();
-        targetPath.append(basePath);
-        targetPath.append("/copy/Softtek.jpg");
+		String basePath = System.getProperty("user.dir");
+		StringBuilder sourcePath = new StringBuilder();
+		sourcePath.append(basePath);
+		sourcePath.append("/work/Softtek.jpg");
 
-        FileBufferedStreamResource fileBufferedStreamResource =
-            new FileBufferedStreamResource();
+		StringBuilder targetPath = new StringBuilder();
+		targetPath.append(basePath);
+		targetPath.append("/copy/Softtek-COPY.jpg");
 
-        fileBufferedStreamResource.copy(sourcePath.toString(),
-            targetPath.toString());
+		FileBufferedStreamResource fileBufferedStreamResource =
+				new FileBufferedStreamResource();
 
-        File file = new File(targetPath.toString());
+		fileBufferedStreamResource.copy(sourcePath.toString(),
+				targetPath.toString());
 
-        assertTrue(file.exists());
+		File file = new File(targetPath.toString());
 
-    }
+		assertTrue(file.exists());
+
+	}
 
 }
