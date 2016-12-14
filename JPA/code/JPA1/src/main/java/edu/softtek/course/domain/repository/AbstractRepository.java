@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author benjamin.concha
  */
 @Transactional(propagation = Propagation.REQUIRES_NEW)
-public abstract class AbstractRepository<Entity> {
+public abstract class AbstractRepository<e> {
 
 	@Autowired(required = false)
 	@Qualifier("taskExecutor")
@@ -32,11 +32,11 @@ public abstract class AbstractRepository<Entity> {
 		return h2EntityManager;
 	}
 
-	public Entity save(final Entity entity) {
+	public e save(final e entity) {
 		h2EntityManager.persist(entity);
 		return entity;
 	}
 
-	abstract List<Entity> getAll();
+	abstract List<e> getAll();
 
 }

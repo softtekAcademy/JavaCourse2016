@@ -1,5 +1,6 @@
 package edu.softtek.course.domain.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +12,9 @@ import javax.persistence.OneToMany;
 
 
 @Entity
-public class PersonEntity {
+public class PersonEntity implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue
@@ -20,6 +23,7 @@ public class PersonEntity {
 	private String name;
 
 	private String surname;
+
 
 	@OneToMany(mappedBy = "personEntity", cascade = CascadeType.ALL)
 	private List<ContractEntity> contracts;

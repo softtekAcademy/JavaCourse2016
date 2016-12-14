@@ -46,5 +46,4 @@ public class ContractRepository {
 		return h2EntityManager.createQuery("SELECT C FROM ContractEntity C", ContractEntity.class).getResultList();
 	}
 
-
 }

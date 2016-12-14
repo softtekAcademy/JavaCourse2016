@@ -25,7 +25,7 @@ public class ContractEntity implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "ID", unique = true, nullable = false, columnDefinition = "number")
+	@Column(name = "ID", unique = true, nullable = false)
 	private Long id;
 
 	@Column(name = "CONTRACT_NUMBER", nullable = false)
