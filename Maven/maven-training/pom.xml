@@ -1,0 +1,42 @@
+<project
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>edu.softtek.course.maven</groupId>
+  <artifactId>parent-pom</artifactId>
+  <version>0.1.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <name>Reactor POM</name>
+
+  <modules>
+    <module>simplest-pom</module>
+    <!-- Project with maven compiler plugin -->
+    <module>project-with-compiler-configuration</module>
+    <module>project-with-unit-test</module>
+    <module>project-with-resources</module>
+    <module>project-with-filtered-resources</module>
+    <module>project-dependency-exclude</module>
+    <module>project-with-sources/</module>
+    <module>project-without-warnings</module>
+
+    <module>mvn-site-m2</module>
+    <module>mvn-site-m2m3</module>
+    <module>mvn-site-more</module>
+
+    <!-- Later -->
+    <module>assembly-plugin</module>
+    <module>assembly-plugin_A</module>
+    <module>assembly-plugin_B</module>
+    
+    <module>dependency-management</module>
+    <module>plugin-management</module>
+    
+    <module>profiles</module>
+    <module>profiles_A</module>
+        
+  </modules>
+</project>
