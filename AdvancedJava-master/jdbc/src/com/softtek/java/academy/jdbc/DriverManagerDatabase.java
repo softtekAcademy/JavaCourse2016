@@ -4,38 +4,42 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import com.mysql.jdbc.Driver;
+
 public class DriverManagerDatabase {
 
-    static {
+	static {
 
-        try {
+		try {
 
-            DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+			DriverManager.registerDriver(new Driver());
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
 
-    }
+	}
 
-    private DriverManagerDatabase() {
+	private DriverManagerDatabase() {
 
-    }
+	}
 
-    public static Connection getConnection() {
+	public static Connection getConnection() {
 
-        Connection connection = null;
-        try {
+		Connection connection = null;
+		try {
 
-            connection =
-                DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/omsdb", "omsdb", "omsdb");
+			connection =
+					DriverManager.getConnection(
+							"jdbc:mysql://localhost:3306/omsdb", "omsdb", "omsdb");
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
 
-        return connection;
-    }
+		return connection;
+	}
 
 }

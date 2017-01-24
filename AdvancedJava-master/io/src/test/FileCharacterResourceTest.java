@@ -9,46 +9,45 @@ import org.junit.Test;
 
 import com.softtek.java.academy.io.character.FileCharacterResource;
 
-
 public class FileCharacterResourceTest {
-    
-    @Before
-    public void setup() {
 
-        String basePath = System.getProperty("user.dir");
-        StringBuilder targetPath = new StringBuilder();
-        targetPath.append(basePath);
-        targetPath.append("/copy/object.txt");
+	@Before
+	public void setup() {
 
-        File file = new File(targetPath.toString());
+		String basePath = System.getProperty("user.dir");
+		StringBuilder targetPath = new StringBuilder();
+		targetPath.append(basePath);
+		targetPath.append("/copy/object.txt");
 
-        if (file.exists()) {
-            file.delete();
-        }
-    }
-    
-    @Test
-    public void shouldCopyFileByCharacterStream() {
+		File file = new File(targetPath.toString());
 
-        String basePath = System.getProperty("user.dir");
-        StringBuilder sourcePath = new StringBuilder();
-        sourcePath.append(basePath);
-        sourcePath.append("/work/object.txt");
+		if (file.exists()) {
+			file.delete();
+		}
+	}
 
-        StringBuilder targetPath = new StringBuilder();
-        targetPath.append(basePath);
-        targetPath.append("/copy/object.txt");
+	@Test
+	public void shouldCopyFileByCharacterStream() {
 
-        FileCharacterResource fileCharacterResource =
-            new FileCharacterResource();
+		String basePath = System.getProperty("user.dir");
+		StringBuilder sourcePath = new StringBuilder();
+		sourcePath.append(basePath);
+		sourcePath.append("/work/object.txt");
 
-        fileCharacterResource.copy(sourcePath.toString(),
-            targetPath.toString());
+		StringBuilder targetPath = new StringBuilder();
+		targetPath.append(basePath);
+		targetPath.append("/copy/object-COPY.txt");
 
-        File file = new File(targetPath.toString());
+		FileCharacterResource fileCharacterResource =
+				new FileCharacterResource();
 
-        assertTrue(file.exists());
+		fileCharacterResource.copy(sourcePath.toString(),
+				targetPath.toString());
 
-    }
+		File file = new File(targetPath.toString());
+
+		assertTrue(file.exists());
+
+	}
 
 }

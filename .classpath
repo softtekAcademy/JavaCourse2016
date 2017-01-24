@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="AdvancedJava-master/collections/src"/>
+	<classpathentry kind="src" path="AdvancedJava-master/exceptions/src"/>
+	<classpathentry kind="src" path="AdvancedJava-master/io/src"/>
+	<classpathentry kind="src" path="AdvancedJava-master/jdbc/src"/>
+	<classpathentry kind="src" path="AdvancedJava-master/threads/src"/>
+	<classpathentry kind="src" path="JavaBasics-master/src/main/java"/>
+	<classpathentry kind="src" path="Spring-Framework-master/spring-core/src/main/java"/>
+	<classpathentry kind="src" path="Spring-Framework-master/spring-jdbc/src/main/java"/>
+	<classpathentry kind="src" path="Spring-Framework-master/Spring-MVC/spring-mvc-showcase/src/main/java"/>
+	<classpathentry kind="src" path="Spring-Framework-master/Spring-MVC/spring-mvc-xml-helloworld/src/main/java"/>
+	<classpathentry kind="src" path="Spring-Framework-master/Spring-Security/spring-security-custom-login-form-xml/src/main/java"/>
+	<classpathentry kind="src" path="Spring-Framework-master/Spring-Security/spring-security-helloworld-xml/src/main/java"/>
+	<classpathentry kind="src" path="Spring-Framework-master/Spring-Security/spring-security-login-form-database/src/main/java"/>
+	<classpathentry kind="src" path="WebServices-master/REST/CODE/ContactList/src/main/java"/>
+	<classpathentry kind="src" path="WebServices-master/REST/CODE/ContactList/src/test/java"/>
+	<classpathentry kind="src" path="WebServices-master/SOAP/code/src/main/java"/>
+	<classpathentry kind="src" path="WebServices-master/SOAP/code/src/test/it"/>
+	<classpathentry kind="src" path="WebServices-master/SOAP/code/src/test/java"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
