@@ -1,17 +1,18 @@
-package edu.softtek.course;
+package Jpa.src.main.java.edu.softtek.course;
 
 import java.util.List;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import edu.softtek.course.domain.model.PersonEntity;
-import edu.softtek.course.domain.repository.PersonRepository;
-
+import Jpa.src.main.java.edu.softtek.course.domain.model.PersonEntity;
+import Jpa.src.main.java.edu.softtek.course.domain.repository.PersonRepository;
 
 public class BasicMapping {
 
 	public static void main(String[] args) {
-		String[] fileContext = { "META-INF/spring/applicationContext.xml", "META-INF/spring/jdbc-applicationContext.xml" };
+
+		String[] fileContext = { "META-INF/spring/applicationContext.xml",
+				"META-INF/spring/jdbc-applicationContext.xml" };
 
 		final ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(fileContext);
 		PersonRepository personRepo = (PersonRepository) context.getBean("personRepo");

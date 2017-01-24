@@ -1,4 +1,4 @@
-package edu.softtek.course.domain.model;
+package Jpa.src.main.java.edu.softtek.course.domain.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -9,7 +9,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-
 
 @Entity
 public class PersonEntity implements Serializable {
@@ -23,7 +22,6 @@ public class PersonEntity implements Serializable {
 	private String name;
 
 	private String surname;
-
 
 	@OneToMany(mappedBy = "personEntity", cascade = CascadeType.ALL)
 	private List<ContractEntity> contracts;
@@ -40,6 +38,7 @@ public class PersonEntity implements Serializable {
 	 * @return the id
 	 */
 	public Long getId() {
+
 		return id;
 	}
 
@@ -48,6 +47,7 @@ public class PersonEntity implements Serializable {
 	 *            the id to set
 	 */
 	public void setId(Long id) {
+
 		this.id = id;
 	}
 
@@ -55,6 +55,7 @@ public class PersonEntity implements Serializable {
 	 * @return the name
 	 */
 	public String getName() {
+
 		return name;
 	}
 
@@ -63,6 +64,7 @@ public class PersonEntity implements Serializable {
 	 *            the name to set
 	 */
 	public void setName(String name) {
+
 		this.name = name;
 	}
 
@@ -70,6 +72,7 @@ public class PersonEntity implements Serializable {
 	 * @return the surname
 	 */
 	public String getSurname() {
+
 		return surname;
 	}
 
@@ -78,6 +81,7 @@ public class PersonEntity implements Serializable {
 	 *            the surname to set
 	 */
 	public void setSurname(String surname) {
+
 		this.surname = surname;
 	}
 
@@ -85,6 +89,7 @@ public class PersonEntity implements Serializable {
 	 * @return the contracts
 	 */
 	public List<ContractEntity> getContracts() {
+
 		if (contracts == null) {
 			contracts = new ArrayList<ContractEntity>();
 		}
@@ -96,11 +101,13 @@ public class PersonEntity implements Serializable {
 	 *            the contracts to set
 	 */
 	public void setContracts(List<ContractEntity> contracts) {
+
 		this.contracts = contracts;
 	}
 
 	@Override
 	public String toString() {
+
 		return "PersonEntity [id=" + id + ", name=" + name + ", surname=" + surname + "]";
 	}
 

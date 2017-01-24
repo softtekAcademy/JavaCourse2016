@@ -1,4 +1,4 @@
-package edu.softtek.course.domain.model;
+package Jpa.src.main.java.edu.softtek.course.domain.model;
 
 import java.io.Serializable;
 
@@ -60,6 +60,7 @@ public class ContractEntity implements Serializable {
 	 * @return the id
 	 */
 	public Long getId() {
+
 		return id;
 	}
 
@@ -68,6 +69,7 @@ public class ContractEntity implements Serializable {
 	 *            the id to set
 	 */
 	public void setId(Long id) {
+
 		this.id = id;
 	}
 
@@ -75,6 +77,7 @@ public class ContractEntity implements Serializable {
 	 * @return the contractNumber
 	 */
 	public Long getContractNumber() {
+
 		return contractNumber;
 	}
 
@@ -83,6 +86,7 @@ public class ContractEntity implements Serializable {
 	 *            the contractNumber to set
 	 */
 	public void setContractNumber(final Long contractNumber) {
+
 		this.contractNumber = contractNumber;
 	}
 
@@ -90,6 +94,7 @@ public class ContractEntity implements Serializable {
 	 * @return the consortiumFlag
 	 */
 	public boolean isConsortiumFlag() {
+
 		return consortiumFlag;
 	}
 
@@ -98,6 +103,7 @@ public class ContractEntity implements Serializable {
 	 *            the consortiumFlag to set
 	 */
 	public void setConsortiumFlag(final boolean consortiumFlag) {
+
 		this.consortiumFlag = consortiumFlag;
 	}
 
@@ -105,6 +111,7 @@ public class ContractEntity implements Serializable {
 	 * @return the personEntity
 	 */
 	public PersonEntity getPersonEntity() {
+
 		return personEntity;
 	}
 
@@ -113,6 +120,7 @@ public class ContractEntity implements Serializable {
 	 *            the personEntity to set
 	 */
 	public void setPersonEntity(final PersonEntity personEntity) {
+
 		this.personEntity = personEntity;
 	}
 
@@ -123,6 +131,7 @@ public class ContractEntity implements Serializable {
 	 */
 	@Override
 	public int hashCode() {
+
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + (consortiumFlag ? 1231 : 1237);
@@ -138,6 +147,7 @@ public class ContractEntity implements Serializable {
 	 */
 	@Override
 	public boolean equals(Object obj) {
+
 		if (this == obj)
 			return true;
 		if (obj == null)
@@ -150,12 +160,14 @@ public class ContractEntity implements Serializable {
 		if (contractNumber == null) {
 			if (other.contractNumber != null)
 				return false;
-		} else if (!contractNumber.equals(other.contractNumber))
+		}
+		else if (!contractNumber.equals(other.contractNumber))
 			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
-		} else if (!id.equals(other.id))
+		}
+		else if (!id.equals(other.id))
 			return false;
 		return true;
 	}
@@ -167,7 +179,9 @@ public class ContractEntity implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "ContractEntity [id=" + id + ", contractNumber=" + contractNumber + ", consortiumFlag=" + consortiumFlag + "]";
+
+		return "ContractEntity [id=" + id + ", contractNumber=" + contractNumber + ", consortiumFlag=" + consortiumFlag
+				+ "]";
 	}
 
 }

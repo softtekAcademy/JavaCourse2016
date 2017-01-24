@@ -1,16 +1,17 @@
-package edu.softtek.course;
+package Jpa.src.main.java.edu.softtek.course;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import edu.softtek.course.domain.model.ContractEntity;
-import edu.softtek.course.domain.model.PersonEntity;
-import edu.softtek.course.service.PersonContractService;
-
+import Jpa.src.main.java.edu.softtek.course.domain.model.ContractEntity;
+import Jpa.src.main.java.edu.softtek.course.domain.model.PersonEntity;
+import Jpa.src.main.java.edu.softtek.course.service.PersonContractService;
 
 public class RelataionMapping {
 
 	public static void main(String[] args) {
-		String[] fileContext = { "META-INF/spring/applicationContext.xml", "META-INF/spring/jdbc-applicationContext.xml" };
+
+		String[] fileContext = { "META-INF/spring/applicationContext.xml",
+				"META-INF/spring/jdbc-applicationContext.xml" };
 
 		final ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(fileContext);
 

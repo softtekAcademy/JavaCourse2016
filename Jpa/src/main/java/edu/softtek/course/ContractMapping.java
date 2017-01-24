@@ -1,17 +1,18 @@
-package edu.softtek.course;
+package Jpa.src.main.java.edu.softtek.course;
 
 import java.util.List;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import edu.softtek.course.domain.model.ContractEntity;
-import edu.softtek.course.domain.repository.ContractRepository;
-
+import Jpa.src.main.java.edu.softtek.course.domain.model.ContractEntity;
+import Jpa.src.main.java.edu.softtek.course.domain.repository.ContractRepository;
 
 public class ContractMapping {
 
 	public static void main(String[] args) {
-		String[] fileContext = { "META-INF/spring/applicationContext.xml", "META-INF/spring/jdbc-applicationContext.xml" };
+
+		String[] fileContext = { "META-INF/spring/applicationContext.xml",
+				"META-INF/spring/jdbc-applicationContext.xml" };
 
 		final ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(fileContext);
 		ContractRepository contractRepository = (ContractRepository) context.getBean("contractRepo");

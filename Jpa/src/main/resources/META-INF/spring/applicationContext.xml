@@ -33,7 +33,5 @@
 	<context:component-scan base-package="edu.sofftek" />
 
 	<!-- Configuring aspects -->	
-	<context:spring-configured />
-	
-	
+	<context:spring-configured />	
 </beans>

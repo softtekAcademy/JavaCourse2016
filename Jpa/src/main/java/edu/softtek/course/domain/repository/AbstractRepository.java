@@ -1,4 +1,4 @@
-package edu.softtek.course.domain.repository;
+package Jpa.src.main.java.edu.softtek.course.domain.repository;
 
 import java.util.List;
 
@@ -29,10 +29,12 @@ public abstract class AbstractRepository<e> {
 	 * @return the contractEntityManager
 	 */
 	protected EntityManager getEntityManager() {
+
 		return h2EntityManager;
 	}
 
 	public e save(final e entity) {
+
 		h2EntityManager.persist(entity);
 		return entity;
 	}

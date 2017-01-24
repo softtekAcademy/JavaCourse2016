@@ -1,4 +1,4 @@
-package edu.softtek.course.service;
+package Jpa.src.main.java.edu.softtek.course.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,11 +9,10 @@ import javax.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
-import edu.softtek.course.domain.model.ContractEntity;
-import edu.softtek.course.domain.model.PersonEntity;
-import edu.softtek.course.domain.repository.ContractRepository;
-import edu.softtek.course.domain.repository.PersonRepository;
-
+import Jpa.src.main.java.edu.softtek.course.domain.model.ContractEntity;
+import Jpa.src.main.java.edu.softtek.course.domain.model.PersonEntity;
+import Jpa.src.main.java.edu.softtek.course.domain.repository.ContractRepository;
+import Jpa.src.main.java.edu.softtek.course.domain.repository.PersonRepository;
 
 public class PersonContractService {
 
@@ -28,6 +27,7 @@ public class PersonContractService {
 
 	@Transactional
 	public void addContractToPerson(PersonEntity person, final ContractEntity contract) {
+
 		List<ContractEntity> contracts = new ArrayList<ContractEntity>();
 		contracts.add(contract);
 		person.setContracts(contracts);

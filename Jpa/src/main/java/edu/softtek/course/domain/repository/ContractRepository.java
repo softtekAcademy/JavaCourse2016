@@ -1,4 +1,4 @@
-package edu.softtek.course.domain.repository;
+package Jpa.src.main.java.edu.softtek.course.domain.repository;
 
 import java.util.List;
 
@@ -11,12 +11,10 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import edu.softtek.course.domain.model.ContractEntity;
-
+import Jpa.src.main.java.edu.softtek.course.domain.model.ContractEntity;
 
 /**
- * Abstract class for provide parallel pagination functionality over native
- * queries in progress DB
+ * Abstract class for provide parallel pagination functionality over native queries in progress DB
  * 
  * @author benjamin.concha
  */
@@ -34,15 +32,18 @@ public class ContractRepository {
 	 * @return the contractEntityManager
 	 */
 	protected EntityManager getContractEntityManager() {
+
 		return h2EntityManager;
 	}
 
 	public Long save(ContractEntity contract) {
+
 		h2EntityManager.persist(contract);
 		return contract.getId();
 	}
 
 	public List<ContractEntity> getAll() {
+
 		return h2EntityManager.createQuery("SELECT C FROM ContractEntity C", ContractEntity.class).getResultList();
 	}
 
